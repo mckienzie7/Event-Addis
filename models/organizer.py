@@ -13,14 +13,18 @@ import models
 from models.user import User
 from models.base_model import BaseModel, Base
 
-class Organizer(BaseModel, Base):
+class Organizer(User, Base):
     if models.storage_t == 'db':
         __tablename__ = 'organizer'
         bio = Column(String(128), nullable=False)
         website = Column(String(128), nullable=False)
         socialmedia = Column(String(128), nullable=False)
         phone_number = Column(String(128), nullable=False)
-        
+        events = relationship("Event",
+                                    backref="organizer",
+                                    cascade="all, delete, delete-orphan")
+
+
 
 
 

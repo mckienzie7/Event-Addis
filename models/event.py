@@ -28,7 +28,7 @@ class Events(BaseModel, Base):
     if models.storage_t == 'db':
         __tablename__ = 'events'
 
-
+        organizer = Column(String(128), ForeignKey("organizer.id"), nullable=False)
         title = Column(String(128), nullable=False)
         description = Column(String(128))
         Date = Column(DateTime)
