@@ -15,7 +15,7 @@ import models
 if models.storage_t == 'db':
     event_catagory = Table('event_catagory', Base.metadata,
                            Column('event_id', String(128),
-                           ForeignKey('event.id', onupdate='CASCADE',
+                           ForeignKey('events.id', onupdate='CASCADE',
                                                     ondelete='CASCADE'),
                                                 primary_key=True),
                            Column('catagory_id', String(128),
