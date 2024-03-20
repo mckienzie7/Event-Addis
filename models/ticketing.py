@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Notification class
+Ticketing class
 """
 import enum
 
@@ -11,11 +11,8 @@ from sqlalchemy.orm import relationship
 import models
 from models.base_model import BaseModel, Base
 
-class Notification(BaseModel, Base):
-    """ Notification Representation"""
+class Ticketing(BaseModel, Base):
+    """Representation of Ticketing"""
 
     if models.storage_t == 'db':
-        __tablename__ = 'notification'
-
-
-
+        __tablename__ = 'ticketing'

@@ -4,20 +4,24 @@ Contains the class DBStorage
 """
 
 import models
-from models.amenity import Amenity
+from models.attendee import Attendee
 from models.base_model import BaseModel, Base
-from models.city import City
+from models.catagory import Catagory
+from models.event import Events
+from models.notification import Notification
+from models.organizer import Organizer
 from models.place import Place
-from models.review import Review
-from models.state import State
 from models.user import User
+from models.ticketing import Ticketing
 from os import getenv
 import sqlalchemy
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 
-classes = {"Amenity": Amenity, "City": City,
-           "Place": Place, "Review": Review, "State": State, "User": User}
+classes = {"Attendee": Attendee, "Catagory": Catagory,
+           "Events" : Events, "Notification" : Notification,
+           "Organizer" : Organizer, "Place": Place, "Ticketing": Ticketing,
+                                "User": User}
 
 
 class DBStorage:

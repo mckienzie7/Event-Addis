@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-user class
+Event class
 """
 import enum
 from datetime import datetime
@@ -9,7 +9,6 @@ from os import getenv
 from models.base_model import BaseModel, Base
 import sqlalchemy
 from sqlalchemy.orm import relationship
-from hashlib import md5
 import models
 
 """Associative Table event_catagory"""

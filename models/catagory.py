@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-catagory class
+Catagory class
 """
 import enum
 

@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-user class
+Organizer class
 """
 import enum
 
