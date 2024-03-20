@@ -13,7 +13,7 @@ import models
 from models.user import User
 from models.base_model import BaseModel, Base
 
-class Organizer(BaseModel, Base, User):
+class Organizer(BaseModel, Base):
     if models.storage_t == 'db':
         __tablename__ = 'organizer'
         bio = Column(String(128), nullable=False)
