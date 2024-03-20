@@ -12,6 +12,7 @@ from sqlalchemy.orm import relationship
 class Place(BaseModel, Base):
     """Representation of Place"""
     if models.storage_t == 'db':
+        __tablename__ = "place"
         name = Column(String(128), nullable=False)
         address = Column(String(128), nullable=False)
         capacities = Column(String(128))
