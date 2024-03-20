@@ -21,8 +21,8 @@ classes = {"Attendee" : Attendee, "BaseModel": BaseModel, "Catagory": Catagory,
 
 
 class HBNBCommand(cmd.Cmd):
-    """ HBNH console """
-    prompt = '(hbnb) '
+    """ Event addis console """
+    prompt = '(eventaddis) '
 
     def do_EOF(self, arg):
         """Exits console"""
