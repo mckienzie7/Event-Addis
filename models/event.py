@@ -10,7 +10,8 @@ from models.base_model import BaseModel, Base
 import sqlalchemy
 from sqlalchemy.orm import relationship
 import models
-
+from models.catagory import Catagory
+from models.place import Place
 """Associative Table event_catagory"""
 if models.storage_t == 'db':
     event_catagory = Table('event_catagory', Base.metadata,
@@ -27,7 +28,7 @@ class Events(BaseModel, Base):
     if models.storage_t == 'db':
         __tablename__ = 'events'
 
-        organizer_id = Column(String(128), ForeignKey('catagory'), nullable=False)
+        
         title = Column(String(128), nullable=False)
         description = Column(String(128))
         Date = Column(DateTime)
