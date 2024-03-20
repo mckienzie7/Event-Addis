@@ -12,7 +12,7 @@ from models.user import User
 import models
 from models.base_model import BaseModel, Base
 
-class Attendee(BaseModel, User, Base):
+class Attendee(BaseModel, Base):
     if models.storage_t == 'db':
         __tablename__ = 'attendee'
 
