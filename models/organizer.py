@@ -20,9 +20,7 @@ class Organizer(BaseModel, Base):
         website = Column(String(128), nullable=False)
         socialmedia = Column(String(128), nullable=False)
         phone_number = Column(String(128), nullable=False)
-        events = relationship("Event",
-                                backref="organizer",
-                                cascade="all, delete, delete-orphan")
+        
 
 
 
