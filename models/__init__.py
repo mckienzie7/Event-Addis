@@ -8,7 +8,7 @@ from os import getenv
 
 storage_t = getenv("HBNB_TYPE_STORAGE")
 
-
-from models.engine.db_storage import DBStorage
-storage = DBStorage()
-storage.reload()
+if storage_t == "db":
+    from models.engine.db_storage import DBStorage
+    storage = DBStorage()
+    storage.reload()
