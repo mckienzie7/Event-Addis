@@ -13,6 +13,8 @@ class Place(BaseModel, Base):
     """Representation of Place"""
     if models.storage_t == 'db':
         __tablename__ = "place"
+
+        event_id = Column(String(128), ForeignKey('events.id'), nullable=False)
         name = Column(String(128), nullable=False)
         address = Column(String(128), nullable=False)
         capacities = Column(String(128))
