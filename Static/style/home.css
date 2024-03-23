@@ -1,17 +1,77 @@
 body{
     padding: 0;
     margin: 0;
+    background-color: #ffffff;
 }
 header{
-    height: 90vh;
+    height: 80vh;
     background-color: aqua;
     background-image: url('../dumb/ethh.jpeg');
     /* Adjust background image settings */
     background-size: cover; /* Cover the entire background */
     background-position: center; /* Center the background image */
     background-repeat: no-repeat
+
 }
 .top{
     height: 8vh;
-    
+    /*background-color: black;*/
+    display: flex;
+
+    padding-top: 10px;
+
+
+}
+.topl{
+
+    height: 100%;
+    /*background-color: black;*/
+    display: flex;
+    padding-left: 15px;
+    gap: 20px;
+
+}.hlogo{
+    margin-top: 14px;
+    margin-left: 10px;
+ }
+
+.hsearch{
+    margin-left: 50px;
+}
+
+.bsearch{
+    border-radius: 100px;
+    padding-left: 20px;
+    width: 350px;
+    height: 44px;
+    border: 1px solid gray;
+    background-color: lightgray;
+    text-align: left;
+    box-shadow: 0 0 5px rgba(0, 0, 0, -4);
+    transition: box-shadow 0.3s ease;
+    opacity: 0.8;
+}
+
+.bsearch:hover {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.4); /* Lighter shadow on hover */
+}
+.topr{
+    display: flex;
+    /*background-color: black;*/
+    margin-left: 20px;
+    width: 100%;
+    padding-left: 500px;
+    gap: 50px;
+
+}
+
+.findeventh{
+    margin-left: 20px;
+}
+span{
+    font-weight: 600;
+    font-family: Neue Plak Text, Neue Plak;
+    line-height: 20px;
+    white-space: nowrap;
+    font-size: 14px;
 }
