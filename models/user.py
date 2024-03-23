@@ -28,7 +28,7 @@ class User(BaseModel, Base):
         profile_picture = Column(String(128))
         events = relationship("Event",
                                     backref="Organizer",
-                                    cascade="all, delet, delet-orphan")
+                                    cascade="all, delete, delete-orphan")
 
 
 
