@@ -21,6 +21,15 @@ class User(BaseModel, Base):
         username = Column(String(128), nullable=False)
         password = Column(String(128), nullable=False)
         Role = enum.Enum("Role", ["Attendee", "organizer"])
+        bio = Column(String(128))
+        website = Column(String(128),)
+        socialmedia = Column(String(128),)
+        phone_number = Column(String(128), nullable=False)
+        profile_picture = Column(String(128))
+        events = relationship("Event",
+                                    backref="Organizer",
+                                    cascade="all, delet, delet-orphan")
+
 
 
     def __init__(self, *args, **kwargs):

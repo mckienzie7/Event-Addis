@@ -4,19 +4,17 @@
 import cmd
 from datetime import datetime
 import models
-from models.attendee import Attendee
 from models.base_model import BaseModel
 from models.catagory import Catagory
 from models.event import Events
 from models.notification import Notification
-from models.organizer import Organizer
 from models.place import Place
 from models.ticketing import Ticketing
 from models.user import User
 import shlex  # for splitting the line along spaces except in double quotes
 
-classes = {"Attendee" : Attendee, "BaseModel": BaseModel, "Catagory": Catagory,
-           "Events" : Events, "Notification" : Notification, "Organizer" : Organizer,
+classes = {"BaseModel": BaseModel, "Catagory": Catagory,
+           "Events" : Events, "Notification" : Notification,
            "Place": Place, "Ticketing": Ticketing, "User": User}
 
 

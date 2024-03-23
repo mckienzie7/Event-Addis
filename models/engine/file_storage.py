@@ -5,20 +5,16 @@ Contains the FileStorage class
 
 import json
 import models
-from models.attendee import Attendee
 from models.catagory import Catagory
 from models.event import Events
 from models.notification import Notification
-from models.organizer import Organizer
 from models.place import Place
 from models.user import User
 from models.ticketing import Ticketing
 from hashlib import md5
 
-classes = {"Attendee": Attendee, "Catagory": Catagory,
-           "Events" : Events, "Notification" : Notification,
-           "Organizer" : Organizer, "Place": Place, "Ticketing": Ticketing,
-           "User": User}
+classes = {"Catagory": Catagory,"Events" : Events, "Notification" : Notification,
+           "Place": Place, "Ticketing": Ticketing, "User": User}
 
 
 class FileStorage:
