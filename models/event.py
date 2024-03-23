@@ -4,7 +4,7 @@ Event class
 """
 import enum
 from datetime import datetime
-from sqlalchemy import Column, String, Integer, Float, ForeignKey, Table, DateTime
+from sqlalchemy import Column, String, Integer, Float, ForeignKey, Table, DateTime, Enum
 from os import getenv
 from models.base_model import BaseModel, Base
 import sqlalchemy
@@ -28,13 +28,13 @@ class Events(BaseModel, Base):
     if models.storage_t == 'db':
         __tablename__ = 'events'
 
-        user = Column(String(128), ForeignKey("user.id"), nullable=False)
+        user_id = Column(String(128), ForeignKey("user.id"), nullable=False)
         title = Column(String(128), nullable=False)
         description = Column(String(128))
         Date = Column(DateTime)
         Address = Column(String(128))
         Banner = Column(String(128), nullable=False)
-        status = enum.Enum('status', ['Active', 'Cancelled', 'Published'])
+        status = Column(Enum("status", ['Active', 'Cancelled', 'Published']))
         catagories = relationship("Catagory",
                                             secondary=event_catagory,
                                             viewonly=False)

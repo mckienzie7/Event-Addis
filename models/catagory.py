@@ -2,13 +2,9 @@
 """
 Catagory class
 """
-import enum
+
 
 from sqlalchemy import Column, String
-from os import getenv
-import sqlalchemy
-from sqlalchemy.orm import relationship
-from hashlib import md5
 import models
 from models.base_model import BaseModel, Base
 
@@ -18,7 +14,8 @@ class Catagory(BaseModel, Base):
     if models.storage_t == 'db':
         __tablename__ = 'catagory'
         name = Column(String(128), nullable=False)
-        discription = Column(String(128))
+        discription = Column(String(128), nullable=True)
+
         
 
     def __init__(self, *args, **kwargs):

@@ -4,7 +4,7 @@ user class
 """
 import enum
 
-from sqlalchemy import Column, String
+from sqlalchemy import Column, String, ForeignKey, Enum
 from os import getenv
 import sqlalchemy
 from sqlalchemy.orm import relationship
@@ -20,7 +20,7 @@ class User(BaseModel, Base):
         fullname = Column(String(128), nullable=False)
         username = Column(String(128), nullable=False)
         password = Column(String(128), nullable=False)
-        Role = enum.Enum("Role", ["Attendee", "organizer"])
+        Role = Column(Enum("Role", ["Attendee", "organizer","Adminstrator"]))
         bio = Column(String(128))
         website = Column(String(128),)
         socialmedia = Column(String(128),)
@@ -29,6 +29,10 @@ class User(BaseModel, Base):
         events = relationship("Events",
                                     backref="Organizer",
                                     cascade="all, delete, delete-orphan")
+        notification = relationship("Notification",
+                                    backref="user",
+                                    cascade="all, delete, delete-orphan")
+
 
 
 
