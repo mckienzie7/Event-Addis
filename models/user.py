@@ -26,7 +26,7 @@ class User(BaseModel, Base):
         socialmedia = Column(String(128),)
         phone_number = Column(String(128), nullable=False)
         profile_picture = Column(String(128))
-        events = relationship("Event",
+        events = relationship("Events",
                                     backref="Organizer",
                                     cascade="all, delete, delete-orphan")
 
