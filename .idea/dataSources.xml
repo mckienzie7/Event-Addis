@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="eventaddis_db@localhost" uuid="4efb8191-18a6-4cad-8a70-73c0430262f0">
+    <data-source source="LOCAL" name="eventaddis_db@localhost" uuid="1fdcc90a-c56b-4f93-a098-ed96438a263c">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
@@ -13,23 +13,11 @@
       </jdbc-additional-properties>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="eventaddis_db@localhost [2]" uuid="1f8be1f7-511b-4350-baf9-a17257c60384">
+    <data-source source="LOCAL" name="@localhost" uuid="3c942b11-985d-4152-bc4a-a8765ecde3ea">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/eventaddis_db</jdbc-url>
-      <jdbc-additional-properties>
-        <property name="com.intellij.clouds.kubernetes.db.host.port" />
-        <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
-        <property name="com.intellij.clouds.kubernetes.db.container.port" />
-      </jdbc-additional-properties>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
-    <data-source source="LOCAL" name="eventaddis_db@localhost [3]" uuid="65f690d4-5e77-458d-811b-23fd1bc2c53d">
-      <driver-ref>mysql.8</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/eventaddis_db</jdbc-url>
+      <jdbc-url>jdbc:mysql://localhost:3306</jdbc-url>
       <jdbc-additional-properties>
         <property name="com.intellij.clouds.kubernetes.db.host.port" />
         <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
