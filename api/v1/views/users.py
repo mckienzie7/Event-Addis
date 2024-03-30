@@ -7,7 +7,7 @@ from flask import abort, jsonify, make_response, request
 from flasgger.utils import swag_from
 
 
-@app_views.route('/users', methods=['GET'], strict_slashes=False)
+@app_views.route('/user', methods=['GET'], strict_slashes=False)
 @swag_from('documentation/user/all_users.yml')
 def get_users():
     """
@@ -20,7 +20,7 @@ def get_users():
     return jsonify(list_users)
 
 
-@app_views.route('/users/<user_id>/', methods=['GET'],
+@app_views.route('/user/<user_id>/', methods=['GET'],
                  strict_slashes=False)
 @swag_from('documentation/user/get_user.yml', methods=['GET'])
 def get_amenity(user_id):
@@ -33,10 +33,10 @@ def get_amenity(user_id):
 
 
 
-@app_views.route('/users/<user_id>', methods=['DELETE'],
+@app_views.route('/user/<user_id>', methods=['DELETE'],
                  strict_slashes=False)
 @swag_from('documentation/user/delete_user.yml', methods=['DELETE'])
-def delete_amenity(user_id):
+def delete_user(user_id):
     """
     Deletes an User  Object
     """
@@ -50,6 +50,38 @@ def delete_amenity(user_id):
     storage.save()
 
     return make_response(jsonify({}), 200)
+
+
+
+@app_views.route('/Register', methods=['POST'], strictslashes=False)
+@swag_from('documentation/user/create_user.yml', methods=['POST'])
+def register_user():
+    """
+    Registers a new user
+    """
+    data = request.get_json()
+    if not data:
+        return jsonify({'message': 'No input data provided'}), 400
+
+    required_fields = ['email', 'fullname', 'username', 'password', 'phone_number']
+    for field in required_fields:
+        if field not in data:
+            return jsonify({'message': f'Missing {field} parameter'}), 400
+
+    # Check if the username or email already exists
+    existing_user = storage.find(User, User.username == data['username']) or \
+                    storage.find(User, User.email == data['email'])
+
+    if existing_user:
+        return jsonify({'message': 'User with the provided username or email already exists'}), 400
+
+    # Create the user
+    new_user = User(**data)
+    storage.save()
+
+    return make_response(jsonify(new_user.to_dict()), 201)
+
+
 
 
 
