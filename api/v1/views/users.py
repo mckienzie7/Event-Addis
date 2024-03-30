@@ -71,6 +71,7 @@ def register_user():
         if field not in data:
             return jsonify({'message': f'Missing {field} parameter'}), 400
 
+
     # Create the user
     new_user = User(**data)
     storage.save()
