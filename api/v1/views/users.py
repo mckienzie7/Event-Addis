@@ -50,13 +50,16 @@ def delete_user(user_id):
 
     return make_response(jsonify({}), 200)
 
-
+"""
 
 @app_views.route('/Register', methods=['POST'], strictslashes=False)
 @swag_from('documentation/user/create_user.yml', methods=['POST'])
 def register_user():
     """
+"""
     Registers a new user
+"""
+
     """
     data = request.get_json()
     if not data:
@@ -80,7 +83,7 @@ def register_user():
 
     return make_response(jsonify(new_user.to_dict()), 201)
 
-
+"""
 
 
 
