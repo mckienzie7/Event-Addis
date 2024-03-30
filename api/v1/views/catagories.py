@@ -36,12 +36,12 @@ def get_catagory(catagory_id):
 @app_views.route('/catagory/<catagory_id>', methods=['DELETE'],
                  strict_slashes=False)
 @swag_from('documentation/catagory/delete_catagory.yml', methods=['DELETE'])
-def delete_catagory(user_id):
+def delete_catagory(catagory_id):
     """
     Deletes an Catagory  Object
     """
 
-    cata = storage.get(Catagory, user_id)
+    cata = storage.get(Catagory, catagory_id)
 
     if not cata:
         abort(404)

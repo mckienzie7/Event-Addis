@@ -14,7 +14,6 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 
-
 """Load enviromental variable from .env file"""
 load_dotenv()
 class Notification(BaseModel, Base):

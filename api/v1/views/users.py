@@ -50,16 +50,17 @@ def delete_user(user_id):
 
     return make_response(jsonify({}), 200)
 
-"""
 
-@app_views.route('/Register', methods=['POST'], strictslashes=False)
+from flask import request, jsonify, make_response
+from flasgger.utils import swag_from
+from models.user import User
+from api.v1.views import app_views
+
+@app_views.route('/Register', methods=['POST'])
 @swag_from('documentation/user/create_user.yml', methods=['POST'])
 def register_user():
     """
-"""
     Registers a new user
-"""
-
     """
     data = request.get_json()
     if not data:
@@ -70,22 +71,8 @@ def register_user():
         if field not in data:
             return jsonify({'message': f'Missing {field} parameter'}), 400
 
-    # Check if the username or email already exists
-    existing_user = storage.find(User, User.username == data['username']) or \
-                    storage.find(User, User.email == data['email'])
-
-    if existing_user:
-        return jsonify({'message': 'User with the provided username or email already exists'}), 400
-
     # Create the user
     new_user = User(**data)
     storage.save()
 
     return make_response(jsonify(new_user.to_dict()), 201)
-
-"""
-
-
-
-
-

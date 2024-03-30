@@ -87,6 +87,32 @@ class FileStorage:
 
         return None
 
+
+    def find(self, cls, **kwargs):
+        """
+        Finds objects in the file storage based on given criteria
+        """
+        if cls not in classes.values():
+            return None
+
+        if not kwargs:
+            return None
+
+        filtered_objs = []
+        all_objs = self.all(cls)
+
+        for obj in all_objs.values():
+            match = True
+            for key, value in kwargs.items():
+                if not hasattr(obj, key) or getattr(obj, key) != value:
+                    match = False
+                    break
+            if match:
+                filtered_objs.append(obj)
+
+        return filtered_objs[0] if filtered_objs else None
+
+
     def count(self, cls=None):
         """
         count the number of objects in storage

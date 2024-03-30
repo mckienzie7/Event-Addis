@@ -27,7 +27,7 @@ if models.storage_t == 'db':
 class Events(BaseModel, Base):
     if models.storage_t == 'db':
         __tablename__ = 'events'
-
+        place_id = Column(String(128), ForeignKey("place.id"), nullable=False)
         user_id = Column(String(128), ForeignKey("user.id"), nullable=False)
         title = Column(String(128), nullable=False)
         description = Column(String(128))
@@ -38,9 +38,7 @@ class Events(BaseModel, Base):
         catagories = relationship("Catagory",
                                             secondary=event_catagory,
                                             viewonly=False)
-        places = relationship("Place",
-                                backref="events",
-                                    cascade="all, delete, delete-orphan")
+
 
 
 
