@@ -122,10 +122,21 @@ main{
     margin-top: 10px;
     height: 43px;
     border: 1px solid lightgray;
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 600;
     font-family: Neue Plak,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;
     
+
+}
+.input-div a{
+    text-decoration: none;
+    margin-top: 20px;
+}
+.input-div p{
+    color: #39364f;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: Neue Plak,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;
 
 }
 .input-div button{

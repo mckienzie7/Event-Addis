@@ -3,6 +3,7 @@
 Contains class BaseModel
 """
 
+from dotenv import load_dotenv
 from datetime import datetime
 import models
 from os import getenv
@@ -11,6 +12,8 @@ from sqlalchemy import Column, String, DateTime
 from sqlalchemy.ext.declarative import declarative_base
 import uuid
 
+
+load_dotenv()
 time = "%Y-%m-%dT%H:%M:%S.%f"
 
 if models.storage_t == "db":

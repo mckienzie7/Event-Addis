@@ -3,6 +3,7 @@
 Contains the class DBStorage
 """
 
+from dotenv import load_dotenv
 import models
 from models.base_model import BaseModel, Base
 from models.catagory import Catagory
@@ -19,7 +20,7 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 classes = {"Catagory": Catagory, "Events" : Events, "Notification" : Notification,
            "Place": Place, "Ticketing": Ticketing, "User": User}
 
-
+load_dotenv()
 class DBStorage:
     """interaacts with the MySQL database"""
     __engine = None
