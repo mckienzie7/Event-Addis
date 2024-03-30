@@ -9,7 +9,7 @@ from flasgger.utils import swag_from
 
 @app_views.route('/catagory', methods=['GET'], strict_slashes=False)
 @swag_from('documentation/catagory/all_catagories.yml')
-def get_users():
+def get_catagories():
     """
     Retrieves all list of Catagory in  a system
     """
@@ -23,7 +23,7 @@ def get_users():
 @app_views.route('/catagory/<catagory_id>/', methods=['GET'],
                  strict_slashes=False)
 @swag_from('documentation/user/get_user.yml', methods=['GET'])
-def get_amenity(catagory_id):
+def get_catagory(catagory_id):
     """ Retrieves an catagory based on id """
     cata = storage.get(Catagory, catagory_id)
     if not cata:
@@ -36,7 +36,7 @@ def get_amenity(catagory_id):
 @app_views.route('/catagory/<catagory_id>', methods=['DELETE'],
                  strict_slashes=False)
 @swag_from('documentation/catagory/delete_catagory.yml', methods=['DELETE'])
-def delete_amenity(user_id):
+def delete_catagory(user_id):
     """
     Deletes an Catagory  Object
     """
@@ -54,7 +54,7 @@ def delete_amenity(user_id):
 
 @app_views.route('/catagory', methods=['POST'], strict_slashes=False)
 @swag_from('documentation/catagory/post_catagory.yml', methods=['POST'])
-def post_state():
+def post_catagory():
     """
     Creates a Catagory
     """
@@ -72,7 +72,7 @@ def post_state():
 
 @app_views.route('/catagory/<catagory_id>', methods=['PUT'], strict_slashes=False)
 @swag_from('documentation/catagory/put_catagory.yml', methods=['PUT'])
-def put_state(catagory_id):
+def put_catagory(catagory_id):
     """
     Updates a Catgory
     """
