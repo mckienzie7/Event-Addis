@@ -33,8 +33,7 @@ def get_amenity(user_id):
 
 
 
-@app_views.route('/user/<user_id>', methods=['DELETE'],
-                 strict_slashes=False)
+@app_views.route('/user/<user_id>', methods=['DELETE'], strict_slashes=False)
 @swag_from('documentation/user/delete_user.yml', methods=['DELETE'])
 def delete_user(user_id):
     """
