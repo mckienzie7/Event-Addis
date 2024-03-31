@@ -24,7 +24,7 @@ class Notification(BaseModel, Base):
 
         reciever = Column(String(128), nullable=False)
         Message_content = Column(String(128), nullable=False)
-        status = Column(Enum("Status", ["Read", "Unread"]), nullable=False)
+        status = Column(Enum("Read", "Unread"))
         user_id = Column(String(128), ForeignKey("user.id"), nullable=False)
 
 

@@ -28,16 +28,14 @@ class DBStorage:
 
     def __init__(self):
         """Instantiate a DBStorage object"""
-        EA_MYSQL_USER = getenv('EA_MYSQL_USER')
-        EA_MYSQL_PWD = getenv('EA_MYSQL_PWD')
-        EA_MYSQL_HOST = getenv('EA_MYSQL_HOST')
-        EA_MYSQL_DB = getenv('EA_MYSQL_DB')
+
         EA_ENV = getenv('EA_ENV')
         self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'.
-                                      format(EA_MYSQL_USER,
-                                             EA_MYSQL_PWD,
-                                             EA_MYSQL_HOST,
-                                             EA_MYSQL_DB))
+                                      format("adminx",
+                                             "Adminxxx123eventaddis!",
+                                             "localhost",
+                                             "eventaddis_db"))
+
         if EA_ENV == "test":
             Base.metadata.drop_all(self.__engine)
 
@@ -88,6 +86,20 @@ class DBStorage:
         for value in all_cls.values():
             if (value.id == id):
                 return value
+
+        return None
+    def getvalue(self, cls, attribute_name, value):
+        """
+        Returns the object based on the class name, attribute name, and its value, or
+        None if not found
+        """
+        if cls not in classes.values():
+            return None
+
+        all_cls = models.storage.all(cls)
+        for obj in all_cls.values():
+            if getattr(obj, attribute_name, None) == value:
+                return obj
 
         return None
 

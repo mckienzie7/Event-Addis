@@ -19,16 +19,17 @@ class User(BaseModel, Base):
         email = Column(String(128), nullable=False)
         fullname = Column(String(128), nullable=False)
         username = Column(String(128), nullable=False)
+
         password = Column(String(128), nullable=False)
-        Role = Column(Enum("Role", ["Attendee", "organizer","Adminstrator"]))
+        Role = Column(Enum("Attendee", "organizer","Adminstrator"))
         bio = Column(String(128))
         website = Column(String(128),)
         socialmedia = Column(String(128),)
         phone_number = Column(String(128), nullable=False)
         profile_picture = Column(String(128))
         events = relationship("Events",
-                                    backref="Organizer",
-                                    cascade="all, delete, delete-orphan")
+                              backref="Organizer",
+                              cascade="all, delete, delete-orphan")
         notification = relationship("Notification",
                                     backref="user",
                                     cascade="all, delete, delete-orphan")

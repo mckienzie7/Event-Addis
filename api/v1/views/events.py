@@ -41,4 +41,27 @@ def get_all_events():
             abort(404)
 
         return jsonify(ev.to_dict())
+    @app_views.route('/user/<user_id>/event', methods=['POST'],
+                        strict_slashes=False)
+    @swag_from('documentation/event/create_event.yml', methods=['POST'])
+    def create_event(user_id):
+        """
+        Create events
+        :param user_id:  users id
+        :return: jsonify form of event
+        """
+        user = storage.get(User, user_id)
+        if not user:
+            abort(404)
+        if not request.get_json():
+            abort(400, description="Not a JSON")
+        if 'title' not in request.get_json():
+            abort(400, description="Missing Title")
+        if 'Date' not in request.get_json():
+            abort(400, description="Missing Date")
 
+        data = request.get_json()
+        instance = Events(**data)
+        instance.user_id = user.id
+        instance.save()
+        return make_response(jsonify(instance.to_dict()), 201)

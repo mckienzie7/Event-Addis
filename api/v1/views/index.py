@@ -21,7 +21,7 @@ def status():
 def number_objects():
     """ Retrieves the number of each objects by type """
     classes = [Catagory, Events, Place, Notification, Ticketing, User]
-    names = ["caragory", "events", "places", "notifications", "ticketings3", "users"]
+    names = ["caragory", "events", "places", "notifications", "ticketings", "users"]
 
     num_objs = {}
     for i in range(len(classes)):

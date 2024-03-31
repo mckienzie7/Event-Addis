@@ -56,7 +56,7 @@ from flasgger.utils import swag_from
 from models.user import User
 from api.v1.views import app_views
 
-@app_views.route('/Register', methods=['POST'])
+@app_views.route('/Registor', methods=['POST'])
 @swag_from('documentation/user/create_user.yml', methods=['POST'])
 def register_user():
     """
@@ -66,6 +66,18 @@ def register_user():
     if not data:
         return jsonify({'message': 'No input data provided'}), 400
 
+
+    existing_email = storage.getvalue(User,'email', data.get("email"))
+    existing_username = storage.getvalue(User, 'username', data.get("username"))
+    existing_phoneno = storage.getvalue(User,'phone_number', data.get("phone_number"))
+    if existing_email:
+        return jsonify({'message' : 'Email address already exists'}), 400
+    if existing_username:
+        return jsonify({'message' : 'Username already exists'}), 400
+    if existing_phoneno:
+        return jsonify({'message' : 'Phone Number address already exists'}), 400
+
+
     required_fields = ['email', 'fullname', 'username', 'password', 'phone_number']
     for field in required_fields:
         if field not in data:
@@ -74,6 +86,7 @@ def register_user():
 
     # Create the user
     new_user = User(**data)
-    storage.save()
+
+    new_user.save()
 
     return make_response(jsonify(new_user.to_dict()), 201)
