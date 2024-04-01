@@ -56,7 +56,7 @@ from flasgger.utils import swag_from
 from models.user import User
 from api.v1.views import app_views
 
-@app_views.route('/Registor', methods=['POST'])
+@app_views.route('/user/Registor', methods=['POST'])
 @swag_from('documentation/user/create_user.yml', methods=['POST'])
 def register_user():
     """

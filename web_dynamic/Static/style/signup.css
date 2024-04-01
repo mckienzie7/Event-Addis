@@ -57,6 +57,12 @@ main{
     gap: 10px;
 
 }
+.role{
+    width: 350px;
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+}
 .or{
     border-radius: 12px;
     border: 2px solid lightgrey;
