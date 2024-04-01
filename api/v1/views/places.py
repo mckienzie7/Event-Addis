@@ -24,7 +24,7 @@ def get_places():
 @app_views.route('/place/<place_id>/', methods=['GET'],
                  strict_slashes=False)
 @swag_from('documentation/place/get_place.yml', methods=['GET'])
-def get_catagory(place_id):
+def get_place(place_id):
     """ Retrieves an catagory based on id """
     pl = storage.get(Place, place_id)
     if not pl:
@@ -37,7 +37,7 @@ def get_catagory(place_id):
 @app_views.route('/place/<place_id>', methods=['DELETE'],
                  strict_slashes=False)
 @swag_from('documentation/place/delete_place.yml', methods=['DELETE'])
-def delete_catagory(place_id):
+def delete_place(place_id):
     """
     Deletes an Place  Object
     """
@@ -51,6 +51,8 @@ def delete_catagory(place_id):
     storage.save()
 
     return make_response(jsonify({}), 200)
+
+
 
 
 @app_views.route('/place', methods=['POST'], strict_slashes=False)
@@ -75,7 +77,7 @@ def create_place():
 
 @app_views.route('/place/<place_id>', methods=['PUT'], strict_slashes=False)
 @swag_from('documentation/place/put_place.yml', methods=['PUT'])
-def put_catagory(place_id):
+def put_place(place_id):
     """
     Updates a Place
     """
@@ -95,4 +97,6 @@ def put_catagory(place_id):
             setattr(pl, key, value)
     storage.save()
     return make_response(jsonify(pl.to_dict()), 200)
+
+
 

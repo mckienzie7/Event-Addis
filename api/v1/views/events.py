@@ -10,17 +10,11 @@ from flask import abort, jsonify, make_response, request
 from flasgger.utils import swag_from
 
 
-@app_views.route('/catagory', methods=['GET'], strict_slashes=False)
-@swag_from('documentation/catagory/all_catagories.yml')
-def get_all_events():
-    """
-    Retrievs all events from system(storage)
-    :return:
-    """
 
-    @app_views.route('/event', methods=['GET'], strict_slashes=False)
-    @swag_from('documentation/event/all_events.yml')
-    def get_all_events():
+
+@app_views.route('/event', methods=['GET'], strict_slashes=False)
+@swag_from('documentation/event/all_events.yml')
+def get_all_events():
         """
         Retrieves all list of Events in  a system(Storage)
         """
@@ -31,26 +25,27 @@ def get_all_events():
         return jsonify(list_events)
 
 
-    @app_views.route('/event/<event_id>/', methods=['GET'],
+@app_views.route('/event/<event_id>/', methods=['GET'],
                      strict_slashes=False)
-    @swag_from('documentation/event/get_event.yml', methods=['GET'])
-    def get_event(event_id):
+@swag_from('documentation/event/get_event.yml', methods=['GET'])
+def get_event(event_id):
         """ Retrieves an Event based on id """
         ev = storage.get(Events, event_id)
         if not ev:
             abort(404)
 
         return jsonify(ev.to_dict())
-    @app_views.route('/user/<user_id>/event', methods=['POST'],
+@app_views.route('/user/<user_id>/event', methods=['POST'],
                         strict_slashes=False)
-    @swag_from('documentation/event/create_event.yml', methods=['POST'])
-    def create_event(user_id):
+@swag_from('documentation/event/create_event.yml', methods=['POST'])
+def create_event(user_id):
         """
         Create events
         :param user_id:  users id
         :return: jsonify form of event
         """
         user = storage.get(User, user_id)
+
         if not user:
             abort(404)
         if not request.get_json():
@@ -60,7 +55,15 @@ def get_all_events():
         if 'Date' not in request.get_json():
             abort(400, description="Missing Date")
 
+        if 'place_id' not in request.get_json():
+            abort(400, description="Missing place_id")
+
         data = request.get_json()
+        pl = storage.get(User, data['place_id'])
+
+        if not pl:
+            abort(404)
+
         instance = Events(**data)
         instance.user_id = user.id
         instance.save()

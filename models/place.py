@@ -21,8 +21,8 @@ class Place(BaseModel, Base):
         facilities = Column(String(128))
 
         events = relationship("Events",
-                               backref="places",
-                               cascade="all, delete, delete-orphan")
+                              backref="places",
+                              cascade="all, delete, delete-orphan")
 
 
     def __init__(self, *args, **kwargs):

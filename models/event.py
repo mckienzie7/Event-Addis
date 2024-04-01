@@ -28,11 +28,11 @@ class Events(BaseModel, Base):
     if models.storage_t == 'db':
         __tablename__ = 'events'
 
-        place_id = Column(String(128), ForeignKey("place.id"), nullable=False)
+        place_id = Column(String(128), ForeignKey("place.id"))
         user_id = Column(String(128), ForeignKey("user.id"), nullable=False)
         title = Column(String(128), nullable=False)
         description = Column(String(128))
-        Date = Column(String(128), nullable=False)
+        Date = Column(DateTime, nullable=False)
         Address = Column(String(128))
         Banner = Column(String(128))
         status = Column(Enum('Active', 'Cancelled', 'Published'))
@@ -42,5 +42,12 @@ class Events(BaseModel, Base):
 
 
     def __init__(self, *args, **kwargs):
-        """initializes Event"""
+        """Initializes Event"""
+        if 'Date' in kwargs and isinstance(kwargs['Date'], str):
+            # Assuming 'Date' format is 'Friday, April 5th'
+            date_str = kwargs['Date']
+            # Removing the suffix from the date string
+            date_str = date_str.replace('th', '').replace('st', '').replace('nd', '').replace('rd', '')
+            # Parsing the date without the suffix
+            kwargs['Date'] = datetime.strptime(date_str, '%A, %B %d')
         super().__init__(*args, **kwargs)
