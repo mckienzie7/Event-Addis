@@ -110,7 +110,10 @@ body{
 }
 .topr a{
     text-decoration: none;
-    color: black;
+    color: #1E0A3C;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: Neue Plak,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;
 }
 .topr div{
     width: 100px;
@@ -230,23 +233,48 @@ body{
     /* padding-left: 10px; */
 }
 .explore-more{
-    width: 100%;
+    padding-left: 140px;
+    padding-right: 180px;
     display: flex;
     flex-direction: column;
-    padding-top: 20px;
-    
-
+    margin-bottom: 30px;
 }
-.explore-more p{
+
+
+.explore_p{
     height: 100%;
-    margin-left: 140px;
     font-size: 24px;
     font-family: Neue Plak,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;
     font-weight: 700;
 
 }
-.cataggories{
+.cat-div{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+.catt{
+    margin-left: 10px;
+    width: 23%;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: rgba(211, 211, 211, 0.4);
+    align-items: center;
+}
+.catt i{
+    margin-left: 30px;
+}
+.catt p{
+    margin: 0%;
+    padding: 0%;
+    margin-left: 40px;
+    font-family: Neue Plak,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #1E0A3C;
 
-    
- 
+
 }

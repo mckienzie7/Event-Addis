@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 """ objects that handles all default RestFul API actions for Amenities"""
 from models.user import User
+from flask_jwt_extended import create_access_token
+from werkzeug.security import check_password_hash
 from models import storage
 from api.v1.views import app_views
 from flask import abort, jsonify, make_response, request
@@ -90,3 +92,26 @@ def register_user():
     new_user.save()
 
     return make_response(jsonify(new_user.to_dict()), 201)
+@app_views.route('/user/login', methods=['POST'])
+@swag_from('documentation/user/log_user.yml', methods=['POST'])
+def login():
+    data = request.get_json()
+    if not data:
+        return jsonify({'message': 'No input data provided'}), 400
+
+    required_fields = ['username', 'password']
+    for field in required_fields:
+        if field not in data:
+            return jsonify({'message': f'Missing {field} parameter'}), 400
+
+    username = data['username']
+    password = data['password']
+
+    user = storage.getvalue(User, 'username', username)
+    if not user or not check_password_hash(user.password, password):
+        return jsonify({'message': 'Invalid username or password'}), 401
+
+    # Generate JWT token
+    access_token = create_access_token(identity=user.id)
+
+    return jsonify({'access_token': access_token}), 200
