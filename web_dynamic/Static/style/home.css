@@ -18,8 +18,6 @@ header{
     background-size: cover; /* Cover the entire background */
     background-position: center; /* Center the background image */
     background-repeat: no-repeat
-
-
 }
 .middletext{
     color: #d1410c;
@@ -29,11 +27,10 @@ header{
 
 }
 .top{
-    height: 8vh;
-    /*background-color: black;*/
+    height: 7vh;
+    background-color: white;
     display: flex;
-
-    padding-top: 10px;
+    padding-bottom: 10px;
 
 
 }
@@ -58,10 +55,10 @@ header{
 .bsearch{
     border-radius: 100px;
     padding-left: 20px;
-    width: 350px;
+    width: 600px;
     height: 44px;
-    border: 1px solid gray;
-    background-color: #ffffff;
+    border: 1px solid  gray;
+    background-color:  rgba(211, 211, 211, 0.4);
     text-align: left;
     box-shadow: 0 0 5px rgba(0, 0, 0, -4);
     transition: box-shadow 0.3s ease;
@@ -76,8 +73,8 @@ header{
     /*background-color: black;*/
     
     width: 100%;
-    padding-left: 350px;
-    gap: 20px;
+    padding-left: 230px;
+    gap: 14px;
     margin-top: 10px;
 }
 .topr a{
@@ -85,7 +82,7 @@ header{
     color: black;
 }
 .topr div{
-    width: 120px;
+    width: 100px;
     border-radius: 20px;
     height: 30px;
     /* background-color: cyan; */
@@ -93,16 +90,16 @@ header{
     padding-top: 10px;
 }
 .topr div:hover{
-    background-color: #d1410c;
+    background-color: rgba(211, 211, 211, 0.4);
     
 }
 
 span{
-    font-weight: 550;
+    font-weight: 600;
     font-family: "Neue Plak Text", "Neue Plak", sans-serif;
     line-height: 20px;
     white-space: nowrap;
-    font-size: 14px;
+    font-size: 12px;
 }
 .rest{
     height: 100px;

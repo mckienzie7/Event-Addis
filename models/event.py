@@ -28,7 +28,7 @@ class Events(BaseModel, Base):
     if models.storage_t == 'db':
         __tablename__ = 'events'
 
-        place_id = Column(String(128), ForeignKey("place.id"))
+        place_id = Column(String(128), ForeignKey("place.id"), nullable=False)
         user_id = Column(String(128), ForeignKey("user.id"), nullable=False)
         title = Column(String(128), nullable=False)
         description = Column(String(128))
