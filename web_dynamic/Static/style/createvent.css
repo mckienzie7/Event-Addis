@@ -55,6 +55,12 @@ body{
 
 
 }
+.events-div{
+    width: 100%;
+    height: 300px;
+    background-color: red;
+
+}
 .etl{
     color: #261b36;
     font-size: 17px;

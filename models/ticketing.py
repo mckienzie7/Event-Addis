@@ -4,7 +4,7 @@ Ticketing class
 """
 import enum
 
-from sqlalchemy import Column, String
+from sqlalchemy import Column, String,Enum, Float, Boolean
 from os import getenv
 import sqlalchemy
 from sqlalchemy.orm import relationship
@@ -17,7 +17,10 @@ class Ticketing(BaseModel, Base):
     if models.storage_t == 'db':
         __tablename__ = 'ticketing'
 
-        ticket_type = Column(Enum)
+        ticket_type = Column(Enum("normal" , "VIP" , "VVIP"))
+        price = Column(Float)
+        refundable = Column(Boolean)
+
 
     
      

@@ -107,13 +107,28 @@ main{
     
     
 }
+.success-message {
+    background-color: #28a745; /* Green color for success */
+    color: #fff; /* White text */
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999; /* Ensures it's on top of other elements */
+}
+
+.settingpp{
+    padding-top: 150px;
+}
 i{
     font-size: 20px;
     
     /* border: 1px solid black; */
     height: 30px;
-    margin-top: 20px;
-    margin-left: 15px;
+    margin-top: 40px;
+    margin-left: 20px;
 }
 i:hover{
     color: blue;

@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const usernameInput = document.querySelector('input[name="username"]');
             const roleInput = document.querySelector('input[name="role"]');
             const passwordInput = document.querySelector('input[name="password"]');
+            const phoneInput = document.querySelector('input[name="phone"]');
 
             // Check if inputs exist
             if (!emailInput || !confirmEmailInput || !fullnameInput || !usernameInput || !roleInput || !passwordInput) {
@@ -25,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const username = usernameInput.value;
             const role = roleInput.value;
             const password = passwordInput.value;
-
+            const phoneno = phoneInput.value;
             // Regular expression to validate email format
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -47,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 fullname: fullname,
                 username: username,
                 password: password,
-                phone_number: "", // You may want to add functionality to handle phone number
+                phone_number: phoneno, // You may want to add functionality to handle phone number
                 role: role // Changed 'Role' to 'role' to match the object key
             };
 

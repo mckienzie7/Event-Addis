@@ -2,12 +2,12 @@
 """ objects that handles all default RestFul API actions for Amenities"""
 from models.user import User
 from flask_jwt_extended import create_access_token
-from werkzeug.security import check_password_hash
 from models import storage
-from api.v1.views import app_views
 from flask import abort, jsonify, make_response, request
 from flasgger.utils import swag_from
-
+from models.user import User
+from api.v1.views import app_views
+import hashlib
 
 @app_views.route('/user', methods=['GET'], strict_slashes=False)
 @swag_from('documentation/user/all_users.yml')
@@ -25,7 +25,7 @@ def get_users():
 @app_views.route('/user/<user_id>/', methods=['GET'],
                  strict_slashes=False)
 @swag_from('documentation/user/get_user.yml', methods=['GET'])
-def get_amenity(user_id):
+def get_user(user_id):
     """ Retrieves an user based on id """
     user = storage.get(User, user_id)
     if not user:
@@ -53,10 +53,6 @@ def delete_user(user_id):
     return make_response(jsonify({}), 200)
 
 
-from flask import request, jsonify, make_response
-from flasgger.utils import swag_from
-from models.user import User
-from api.v1.views import app_views
 
 @app_views.route('/user/Registor', methods=['POST'])
 @swag_from('documentation/user/create_user.yml', methods=['POST'])
@@ -92,26 +88,40 @@ def register_user():
     new_user.save()
 
     return make_response(jsonify(new_user.to_dict()), 201)
-@app_views.route('/user/login', methods=['POST'])
+
+@app_views.route('/user/loginn', methods=['POST'])
 @swag_from('documentation/user/log_user.yml', methods=['POST'])
 def login():
     data = request.get_json()
     if not data:
         return jsonify({'message': 'No input data provided'}), 400
 
-    required_fields = ['username', 'password']
-    for field in required_fields:
-        if field not in data:
-            return jsonify({'message': f'Missing {field} parameter'}), 400
+    username = data.get('username')
+    password1 = data.get('password')
 
-    username = data['username']
-    password = data['password']
+    if not (username and password1):
+        return jsonify({'message': 'Missing username or password parameter'}), 400
 
     user = storage.getvalue(User, 'username', username)
-    if not user or not check_password_hash(user.password, password):
+    if not user:
+        abort(404)
+
+    db_pwd = user.password
+    entered_pwd = hashlib.md5(password1.encode()).hexdigest()  # Hash the entered password
+
+    if db_pwd != entered_pwd:
         return jsonify({'message': 'Invalid username or password'}), 401
+
 
     # Generate JWT token
     access_token = create_access_token(identity=user.id)
-
-    return jsonify({'access_token': access_token}), 200
+    user_info = {
+        'user_id': user.id,
+        'username': user.username,
+        'email': user.email,
+        'fullname': user.fullname,
+        'phone_number': user.phone_number,
+        'Role' : user.Role
+    }
+    return jsonify({'access_token': access_token,
+                    'user_info' : user_info}), 200
