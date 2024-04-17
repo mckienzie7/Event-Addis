@@ -28,25 +28,26 @@ $(document).ready(function() {
                 password: password
             }),
             success: function(data) {
-                console.log(data)
+                console.log(data);
                 // Assuming server returns an access token upon successful login
                 const accessToken = data.access_token;
-                const Role = data.user_info.Role
-                const user_info = data.user_info
+                const role = data.user_info.Role.toLowerCase(); // Ensure lowercase for consistent comparison
+                const user_info = JSON.stringify(data.user_info); // Store user_info as a string
 
-                // Store the token in local storage
+                // Store the token and user info in local storage
                 localStorage.setItem('accessToken', accessToken);
-                localStorage.setItem('Role', Role);
-                localStorage.setItem('user_info', user_info)
+                localStorage.setItem('Role', role);
+                localStorage.setItem('user_info', user_info);
+
                 // Redirect based on role
-                if (Role === 'Adminstrator') {
+                if (role === 'administrator') {
                     window.location.href = '../templates/home.html';
-                } else if (Role === 'organizer') {
+                } else if (role === 'organizer') {
                     window.location.href = 'organizer.html';
-                } else if (Role === 'Attendee') {
-                    window.location.href = '/home';
+                } else if (role === 'attendee') {
+                    window.location.href = 'home.html'; // Adjust the URL as needed
                 } else {
-                    throw new Error('Unknown role');
+                    throw new Error('Unknown role: ' + role);
                 }
             },
             error: function(xhr, status, error) {

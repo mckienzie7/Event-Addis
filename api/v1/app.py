@@ -1,38 +1,39 @@
 #!/usr/bin/python3
 """ Flask Application """
 from models import storage
-from dotenv import load_dotenv
 from api.v1.views import app_views
 from os import environ
-from flask import Flask, render_template, make_response, jsonify
-from flask_cors import CORS
+from flask import Flask, make_response, jsonify
 from flasgger import Swagger
-from flasgger.utils import swag_from
 from flask_jwt_extended import JWTManager
-
-
+from flask_cors import CORS
 
 app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 app.register_blueprint(app_views)
-cors = CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
-jwt = JWTManager(app)
 app.config['JWT_SECRET_KEY'] = 'your_secret_key_here'
-load_dotenv()
+UPLOAD_FOLDER = '/c/Users/user/Documents/Github/Event-Addis'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+jwt = JWTManager(app)
+CORS(app)
+
+# Add a route to handle OPTIONS requests
+@app.route('/api/v1/user/<user_id>/event', methods=['OPTIONS', 'POST'])
+def handle_options(user_id):
+    response = make_response()
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    response.headers['Access-Control-Allow-Headers'] = 'Content-Type'
+    response.headers['Access-Control-Allow-Methods'] = 'POST'
+    return response
+
 @app.teardown_appcontext
 def close_db(error):
     """ Close Storage """
     storage.close()
 
-
 @app.errorhandler(404)
 def not_found(error):
-    """ 404 Error
-    ---
-    responses:
-      404:
-        description: a resource was not found
-    """
+    """ 404 Error """
     return make_response(jsonify({'error': "Not found"}), 404)
 
 app.config['SWAGGER'] = {
@@ -42,13 +43,8 @@ app.config['SWAGGER'] = {
 
 Swagger(app)
 
-
 if __name__ == "__main__":
     """ Main Function """
-    host = environ.get('EA_API_HOST')
-    port = environ.get('EA_API_PORT')
-    if not host:
-        host = '0.0.0.0'
-    if not port:
-        port = '5000'
+    host = environ.get('EA_API_HOST', '0.0.0.0')
+    port = int(environ.get('EA_API_PORT', '5000'))
     app.run(host=host, port=port, threaded=True)

@@ -40,14 +40,6 @@ class Events(BaseModel, Base):
                                   secondary=event_catagory,
                                   viewonly=False)
 
-
-    def __init__(self, *args, **kwargs):
-        """Initializes Event"""
-        if 'Date' in kwargs and isinstance(kwargs['Date'], str):
-            # Assuming 'Date' format is 'Friday, April 5th'
-            date_str = kwargs['Date']
-            # Removing the suffix from the date string
-            date_str = date_str.replace('th', '').replace('st', '').replace('nd', '').replace('rd', '')
-            # Parsing the date without the suffix
-            kwargs['Date'] = datetime.strptime(date_str, '%A, %B %d')
-        super().__init__(*args, **kwargs)
+def __init__(self, *args, **kwargs):
+    """Initializes Event"""
+    super().__init__(*args, **kwargs)

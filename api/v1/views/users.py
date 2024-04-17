@@ -123,5 +123,6 @@ def login():
         'phone_number': user.phone_number,
         'Role' : user.Role
     }
-    return jsonify({'access_token': access_token,
+    return jsonify({'accessToken': access_token,
                     'user_info' : user_info}), 200
+

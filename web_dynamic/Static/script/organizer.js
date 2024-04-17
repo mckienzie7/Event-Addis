@@ -1,20 +1,60 @@
-document.addEventListener('DOMContentLoaded', function() {
-        // Check if role is organizer or administrator
+$(document).ready(function() {
+        // Check if there's an access token and user role
+        var accessToken = localStorage.getItem('accessToken');
         var role = localStorage.getItem('Role');
 
-        if (role === 'organizer' || role === 'administrator') {
-                // Create a success message element
-                var successMessage = document.createElement('div');
-                successMessage.className = 'success-message';
-                successMessage.textContent = 'Login successful!'; // You can customize this message
+        // Check if the access token and role are valid
+        if (accessToken && (role === 'organizer' || role === 'administrator')) {
+                // Check if the success message has already been shown in this session
+                var successMessageShown = sessionStorage.getItem('successMessageShown');
 
-                // Append the success message to the body
-                document.body.appendChild(successMessage);
+                if (!successMessageShown) {
+                        // Create a success message element
+                        var successMessage = $('<div class="success-message">Successful!</div>');
 
-                // Set timeout to remove the success message after 10 seconds
-                setTimeout(function() {
-                        successMessage.remove();
-                }, 4000); // 10 seconds (10,000 milliseconds)
+                        // Append the success message to the body
+                        $('body').append(successMessage);
+
+                        // Set timeout to remove the success message after 4 seconds (4000 milliseconds)
+                        setTimeout(function() {
+                                successMessage.remove();
+                                sessionStorage.setItem('successMessageShown', 'true'); // Set flag to indicate success message has been shown in this session
+                        }, 4000);
+                }
+
+                // Greet the user
+                var user_info = JSON.parse(localStorage.getItem('user_info'));
+                if (user_info && user_info.username && user_info.fullname) {
+                        var fullName = user_info.fullname;
+                        var userName = user_info.username;
+                        var greetingText = 'Oh hello, ' + fullName + '!';
+                        $('.greet-user p').text(greetingText);
+                        $('.two p').text(userName);
+                }
+
+                // Logout functionality
+                const logout = $('.logout');
+                logout.click(function (){
+                        // Show confirmation message
+                        var confirmationMessage = $('<div class="confirmation-message">Are you sure you want to logout?<br><button class="confirm-logout" id="yes">Yes</button><button class="cancel-logout" id="no">No</button></div>');
+                        $('body').append(confirmationMessage);
+
+                        // Handle confirm logout button click
+                        $('.logout').click(function() {
+                                $('.confirmation-message').fadeIn();
+                        });
+
+                        $('.confirm-logout').click(function() {
+                                localStorage.clear();
+                                window.location.href = 'login.html';
+                        });
+
+                        $('.cancel-logout').click(function() {
+                                $('.confirmation-message').fadeOut();
+                        });
+                });
+        } else {
+                // Redirect to login page or handle unauthorized access
+                window.location.href = 'login.html'; // Change to your login page URL
         }
 });
-

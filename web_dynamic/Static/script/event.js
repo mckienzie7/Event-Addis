@@ -1,4 +1,11 @@
 $(document).ready(function() {
+
+
+    var accessToken = localStorage.getItem('accessToken');
+
+    if(accessToken){
+        
+    }
     $.ajax({
         url: 'http://localhost:5000/api/v1/event',
         type: 'GET',
@@ -6,7 +13,7 @@ $(document).ready(function() {
         success: function(response) {
             if (response && Array.isArray(response)) {
                 response.forEach(function(event) {
-                    var eventHTML = '<div class="evp">' +
+                    var eventHTML = '<div class="evp" value="'+ event.id +'">' +
                         '<div class="eventbanner" name="banner">' +
                         '<img src="' + event.Banner + '" alt="">' +
                         '</div>' +

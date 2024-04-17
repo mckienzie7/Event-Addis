@@ -28,12 +28,85 @@ header{
 
 }
 .top{
-    height: 7vh;
+;
     background-color: white;
     display: flex;
     padding-bottom: 10px;
+    height: 45px;
+    width: 100%;
+    /* background-color: black; */
+    border: 1px solid lightgrey;
+    flex-direction: row;
 
+}
+.lefth{
+    width: 50%;
+    height: 100%;
+}
 
+.one{
+    margin-top: 10px;
+    padding-left: 30px;
+    display: flex;
+
+}
+.two{
+
+    height: 100%;
+    margin-left: 30px;
+
+}
+.three{
+    padding: 0%;
+    margin: 0%;
+
+}
+.righth{
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding: 0%;
+    margin: 0%;
+}
+.pp{
+
+    display: flex;
+    flex-direction: row;
+    padding-left: 40px;
+    height: 29px;
+    border-radius: 16px;
+    /*background-color:  rgba(211, 211, 211, 0.4);*/
+
+}
+.pp span{
+    line-height: 30px;
+    width: 28px;
+    height: 26px;
+    background-color: blue;
+    color: white;
+    text-align: center;
+    font-size: 10px;
+    font-weight: 600;
+    color: white;
+    font-family: Neue Plak,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;
+    border-radius: 50%;
+
+}
+.pp p{
+
+    font-size: 12px;
+    font-weight: 600;
+    color: black;
+    font-family: Neue Plak,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;
+
+}
+.pp i{
+    margin-top: 10px;
+    font-size: 15px;
+    margin-bottom: 4px;
+}
+.pp:hover{
+    background-color: lightgray;
 }
 .topl{
 
@@ -73,7 +146,7 @@ header{
     display: flex;
     /*background-color: black;*/
     
-    width: 100%;
+
     padding-left: 230px;
     gap: 14px;
     margin-top: 10px;
@@ -82,20 +155,42 @@ header{
     text-decoration: none;
     color: black;
 }
-.topr div{
-    width: 100px;
+.findeventh{
+    padding-left: 23px;
+    padding-right: 20px;
     border-radius: 20px;
     height: 30px;
     /* background-color: cyan; */
     text-align: center;
     padding-top: 10px;
 }
-.topr div:hover{
+.createventh{
+    padding-left: 23px;
+    padding-right: 20px;
+    border-radius: 20px;
+    height: 30px;
+    /* background-color: cyan; */
+    text-align: center;
+    padding-top: 10px;
+}
+.createventh:hover{
     background-color: rgba(211, 211, 211, 0.4);
     
 }
+.findeventh:hover{
+    background-color: rgba(211, 211, 211, 0.4);
 
-span{
+}
+
+#fespan{
+    font-weight: 600;
+    font-family: "Neue Plak Text", "Neue Plak", sans-serif;
+    line-height: 20px;
+    white-space: nowrap;
+    font-size: 12px;
+
+}
+#cespan{
     font-weight: 600;
     font-family: "Neue Plak Text", "Neue Plak", sans-serif;
     line-height: 20px;
