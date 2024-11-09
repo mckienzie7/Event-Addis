@@ -1,0 +1,267 @@
+body{
+    padding: 0%;
+    margin: 0%;
+    padding-bottom: 150px;
+}
+
+
+.middle{
+    width:  43%;
+    /* background-color: black; */
+    margin-left: 26%;
+
+
+}
+.border-div{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: 3px solid lightgray;
+    border-radius: 6px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 55px;margin-top: 30px;
+    /* padding-top: 10px; */
+}
+.hddetail{
+    color: #261b36;
+    font-size: 17px;
+    font-family: Neue Plak,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;
+    font-weight: 600;
+
+}
+.border-div:hover{
+    border: 3px solid blue;
+}
+.ovp{
+    color: #261b36;
+    font-size: 23px;
+    font-family: Neue Plak,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;
+    font-weight: 700;
+    
+}
+.et{
+    color: #261b36;
+    font-size: 17px;
+    font-family: Neue Plak,-apple-system,blinkmacsystemfont,roboto,Helvetica Neue,helvetica,tahoma,arial,sans-serif;
+    font-weight: 600;
+    margin-bottom: 0%;
+}
+.etdisc{
+    color: #261b36;
+    font-size: 13px;
+    font-family: Neue Plak,-apple-system,blinkmacsystemfont,roboto,Helvetica Neue,helvetica,tahoma,arial,sans-serif;
+    font-weight: 500;
+
+
+}
+select{
+    margin-top: 30px;
+}
+.events-div{
+    width: 100%;
+    height: 300px;
+    background-color: red;
+
+}
+.etl{
+    color: #261b36;
+    font-size: 17px;
+    font-family: Neue Plak,-apple-system,blinkmacsystemfont,roboto,Helvetica Neue,helvetica,tahoma,arial,sans-serif;
+    font-weight: 600;
+    margin-bottom: 0%;
+    margin-top: 10px;
+}
+.add{
+    border-radius: 7px;
+    border: 1px solid grey;
+    width: 40%;
+    height: 45px;
+    color: black;
+    font-size: 16px;
+    font-family: Neue Plak,-apple-system,blinkmacsystemfont,roboto,Helvetica Neue,helvetica,tahoma,arial,sans-serif;
+    font-weight: 500;
+    padding-left: 30px;
+
+
+}
+.etinp{
+    border-radius: 7px;
+    border: 1px solid grey;
+    width: 100%;
+    height: 45px;
+    color: gray;
+    font-size: 15px;
+    font-family: Neue Plak,-apple-system,blinkmacsystemfont,roboto,Helvetica Neue,helvetica,tahoma,arial,sans-serif;
+    font-weight: 500;
+    padding-left: 20px;
+
+}
+.epinp{
+    border-radius: 7px;
+    border: 1px solid grey;
+    width: 50%;
+    height: 45px;
+    color: gray;
+    font-size: 15px;
+    font-family: Neue Plak,-apple-system,blinkmacsystemfont,roboto,Helvetica Neue,helvetica,tahoma,arial,sans-serif;
+    font-weight: 500;
+    padding-left: 20px;
+}
+.ephinp{
+    border-radius: 7px;
+    border: 1px solid grey;
+    width: 60%;
+    height: 45px;
+    color: gray;
+    margin-top: 10px;
+    font-size: 15px;
+    font-family: Neue Plak,-apple-system,blinkmacsystemfont,roboto,Helvetica Neue,helvetica,tahoma,arial,sans-serif;
+    font-weight: 500;
+    padding-left: 20px;
+}
+.pickedplace{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0%;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+.backto i{
+    margin-right: 15px;
+    font-size: 11px;
+}
+.or{
+    margin-bottom: 0%;
+
+}
+.cata i{
+    margin-top: 6px;
+}
+
+.backto{
+    text-decoration: none;
+    color: blue;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: Neue Plak,-apple-system,blinkmacsystemfont,roboto,Helvetica Neue,helvetica,tahoma,arial,sans-serif;
+
+}
+.buildeve{
+    color: #261b36;
+    font-weight: 600;
+    font-size: 31px;
+    font-family: Neue Plak,-apple-system,blinkmacsystemfont,roboto,Helvetica Neue,helvetica,tahoma,arial,sans-serif;
+    margin-bottom: 0%;
+}
+.edinp{
+    border-radius: 7px;
+    border: 1px solid grey;
+    width: 100%;
+    height: 60px;
+    color: gray;
+    font-size: 15px;
+    font-family: Neue Plak,-apple-system,blinkmacsystemfont,roboto,Helvetica Neue,helvetica,tahoma,arial,sans-serif;
+    font-weight: 500;
+}
+.eddisc{
+    color: #261b36;
+    font-size: 13px;
+    font-family: Neue Plak,-apple-system,blinkmacsystemfont,roboto,Helvetica Neue,helvetica,tahoma,arial,sans-serif;
+    font-weight: 500;
+
+
+}
+.border-div div{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-top: 20px;
+}
+.inptime{
+    border-radius: 7px;
+    border: 1px solid grey;
+    width: 30%;
+    height: 45px;
+    color: black;
+    font-size: 16px;
+    font-family: Neue Plak,-apple-system,blinkmacsystemfont,roboto,Helvetica Neue,helvetica,tahoma,arial,sans-serif;
+    font-weight: 500;
+    padding-left: 30px;
+
+
+}
+input:hover{
+    border: 2px solid black;
+}
+.ed{
+    color: #261b36;
+    font-size: 17px;
+    font-family: Neue Plak,-apple-system,blinkmacsystemfont,roboto,Helvetica Neue,helvetica,tahoma,arial,sans-serif;
+    font-weight: 600;
+    margin-bottom: 0%;
+    margin-top: 45px;
+
+}
+.catagory-list{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    
+}
+.catagory i{
+    margin-top: 7px;
+}
+.catagory{
+    margin-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 20px;
+    border-radius: 14px;
+    height: 30px;
+    text-align: center;
+    line-height: 27px;
+    background-color: blue;
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: Neue Plak,-apple-system,blinkmacsystemfont,roboto,Helvetica Neue,helvetica,tahoma,arial,sans-serif;
+}
+.cata{
+    text-align: center;
+    line-height: 27px;
+    border-radius: 14px;
+    padding-right: 10px;
+    height: 30px;
+    background-color: blue;
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: Neue Plak,-apple-system,blinkmacsystemfont,roboto,Helvetica Neue,helvetica,tahoma,arial,sans-serif;
+    padding-left: 10px;
+}
+.submit{
+    padding-right: 40px;
+}
+button{
+    border-radius: 7px;
+    height: 32px;
+    width: 120px;
+    background-color: #d1410c;
+    color: white;
+    font-size: 12px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-weight: 600;
+    font-family: Neue Plak,-apple-system,blinkmacsystemfont,roboto,Helvetica Neue,helvetica,tahoma,arial,sans-serif;
+}
+footer{
+    height: 15%;
+    width: 100%;
+    background-color: white;
+    position: static;
+    display: flex;
+    padding-top: 20px;
+    padding-right: 30px;
+    justify-content: flex-end;
+}

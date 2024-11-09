@@ -1,0 +1,340 @@
+body{
+    padding: 0%;
+    margin: 0%;
+}
+header{
+    height: 55px;
+    width: 100%;
+    /* background-color: black; */
+    display: flex;
+    flex-direction: row;
+    
+}
+.lefth{
+    width: 50%;
+    height: 100%;
+}
+.righth{
+    height: 100%;
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+    padding: 0%;
+    margin: 0%;
+}
+.one{
+    
+    display: flex;
+ 
+}
+.two{
+   margin-bottom: 10px;
+    height: 100%;
+    margin-left: 10px;
+
+}
+.three{
+    padding: 0%;
+    margin: 0%;
+
+}
+.pp{
+    padding-top: 7px;
+    padding-bottom: 7px;
+    display: flex;
+    flex-direction: row;
+    padding: 0%;
+    padding-right: 20px;
+    margin: 0%;
+    margin-top: 15px;
+    margin-right: 40px;
+    height: 29px;
+    border-radius: 16px;
+    background-color:  rgba(211, 211, 211, 0.4);
+    align-items: center;
+    justify-content: center;
+}
+.pp span{
+    line-height: 30px;
+    width: 28px;
+    height: 26px;
+    background-color: blue;
+    color: white;
+    text-align: center;
+    font-size: 10px;
+    font-weight: 600;
+    color: white;
+    font-family: Neue Plak,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;
+    border-radius: 50%;
+    
+}
+.pp p{
+    margin-bottom: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    color: black;
+    font-family: Neue Plak,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;
+
+}
+.pp i{
+    font-size: 15px;
+    margin-bottom: 4px;
+}
+.pp:hover{
+    background-color: lightgray;
+}
+
+
+main{
+    /* background-color: blue; */
+    display: flex;
+    flex-direction: row;
+
+}
+.taskbar{
+    height: inherit;
+    width: 60px;
+    background-color: rgba(211, 211, 211, 0.4);
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding-top: 10px;
+    
+}
+.taskbar div{
+    width: 100%;
+    
+    
+}
+i{
+    font-size: 20px;
+    
+    /* border: 1px solid black; */
+    height: 30px;
+    margin-top: 20px;
+    margin-left: 15px;
+}
+i:hover{
+    color: blue;
+}
+.maindiv{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+}
+.greet-user{
+    width: 100%;
+    height: 20%;
+    
+
+}
+.greet-user p{
+    font-size: 48px;
+    font-family: Neue Plak,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;
+    font-weight: 800;
+    color: #1E0A3C;
+    margin-top: 40px;
+    margin-left: 70px;
+    padding-top: 0%;
+    padding-bottom: 0%;
+    /* background-color: #d1410c; */
+
+}
+.home-page_main{
+    display: flex;
+    flex-direction: column;
+    padding-top: 30px;
+    padding-left: 40px;
+    gap: 30px;
+    
+}
+
+.taglist{
+    display: flex;
+    padding: 0%;
+    flex-direction: row;
+    height: 70px;
+}
+.taglist p.all{
+    color: blue;
+}
+.taglist p {
+    color: #6f7287;
+    font-size: 14px;
+    font-weight: 600;
+    margin-left: 40px;
+    font-family: Neue Plak,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;
+    padding-bottom: 5px;
+    bottom: -5px;
+    position: relative;
+    cursor: pointer;
+}
+.taglist p::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -1px; 
+    width: 100%; 
+    border-bottom: 1px solid transparent; 
+    transition: border-color 0.3s ease; 
+}
+.taglist p:hover{
+    color: black;
+}
+.taglist p:hover::after {
+    border-color: black; 
+}
+
+a{
+    color: inherit;
+    text-decoration: none;
+}
+.cataeve{
+    padding-top: 0%;
+    padding-bottom: 0%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    padding-left: 40px;
+
+}
+.cataeve-search{
+    width: 60%;
+    height: 50px;display: flex;
+    flex-direction: row;
+    gap: 30px;
+
+}
+
+.crt{
+    margin-top: 15px;
+    border: 1px solid gray;
+    height: 40px;
+    width: 170px;
+    font-family: Neue Plak,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;
+    text-align: center;
+    margin-left: 160px;
+    line-height: 40px;
+    font-size: 14px;
+    font-weight: 600;
+    background-color: red
+}
+.settingpp{
+    padding-top: 150px;
+}
+.cataeve-search i{
+ 
+    font-size: 31px;
+    color: red;
+}
+
+.crt:hover{
+    background-color: black;
+    color: white;
+}
+.cataeve-search p{
+    width: 100px;
+    height: 30px;
+    background-color: blue;
+    margin-left: 20px;
+    text-align: center;
+    line-height: 30px;
+    font-size: 12px;
+    color: white;
+    border-radius: 15px;
+}
+.cataeve-search input{
+    height: 40px;
+    width: 500px;
+    padding-left: 30px;
+    padding-top: 0%;
+    padding-bottom: 0%;
+    border-radius: 7px;    
+}
+input:focus {
+    border-color: blue;
+}
+.events-div{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding-left: 100px;
+    padding-right: 100px;
+
+}
+
+.postscontainer{
+    width: 100%;
+    gap: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.eventbanner{
+    width: 100%;
+    height: 48%;
+    
+}
+.eventbanner img{
+    width: 100%;
+    height: 100%;
+}
+.eventstatus{
+    border-radius: 6px;
+    background-color: lightblue;
+    font-family: Neue Plak,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;
+    font-size: 14px;
+    width: 84px;
+    font-weight: 600;
+    height: 25px;
+    padding-left: 11px;
+    padding-top: 8px;
+    
+}
+.eventtitle{
+    font-size: 18px;
+    font-family: Neue Plak,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;
+    font-weight: 600;
+}
+
+.eventattr{
+    width: 100%;
+    height: 52%;
+    margin-left: 5px;
+    
+}
+.eventdate{
+    font-size: 14px;
+    font-family: Neue Plak,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;
+    font-weight: 600;
+
+}
+.eventaddress{
+    font-size: 14px;
+    font-family: Neue Plak,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;
+    font-weight: 600;
+    color: #6f7287;
+
+}
+.eventprice{
+    font-size: 14px;
+    font-family: Neue Plak,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;
+    font-weight: 600;
+
+}
+.evp:hover{
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+
+}
+.evp{
+    width: 30%;
+    height: 420px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    transition: box-shadow 0.3s ease;   
+    border-radius: 12px;
+    /* padding-left: 10px; */
+}

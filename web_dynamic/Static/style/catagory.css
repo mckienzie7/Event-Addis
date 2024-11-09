@@ -1,0 +1,280 @@
+body{
+    
+    
+    padding: 0;
+    margin: 0;
+    /* background-color: lightgray; */
+    /* padding-left: 8px; */
+    
+}
+.cover-part{
+    width: 100%;
+    height: 30vh;
+    background-color: blue;
+    display: flex;
+    flex-direction: row;
+}
+.description-part{
+    width: 50%;
+    height: 100%;
+
+}
+.p-catagory-event{
+    padding: 0%;
+    margin: 0%;
+    padding-top: 50px;
+    color: #F7F154;
+    font-size: 48px;
+    font-weight: 700;
+    font-family: Neue Plak,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;
+}
+.p11{
+    padding: 0%;
+    margin: 0%;
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+    font-family: Neue Plak,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;
+
+}
+.pdisc{
+    padding: 0%;
+    margin: 0%;
+    margin-top: 20px;
+    color: white;
+    font-size: 16px;
+    font-weight: 400;
+    font-family: Neue Plak,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;
+}
+.description-part div{
+    width: 60%;
+    margin-left: 150px;
+    height: 100%;
+
+}
+.photo-part{
+    height: 100%;
+    width: 50%;
+    
+}
+.top{
+    height: 7vh;
+    background-color: white;
+    display: flex;
+    padding-bottom: 10px;
+
+
+}
+.topl{
+
+    height: 100%;
+    /*background-color: black;*/
+    display: flex;
+    padding-left: 15px;
+    gap: 20px;
+
+}.hlogo{
+    margin-top: 14px;
+    margin-left: 10px;
+ }
+
+.hsearch{
+    margin-left: 50px;
+    margin-top: 5px;
+}
+
+.bsearch{
+    border-radius: 100px;
+    padding-left: 20px;
+    width: 600px;
+    height: 44px;
+    border: 1px solid  gray;
+    background-color:  rgba(211, 211, 211, 0.4);
+    text-align: left;
+    box-shadow: 0 0 5px rgba(0, 0, 0, -4);
+    transition: box-shadow 0.3s ease;
+    opacity: 0.8;
+}
+
+.bsearch:hover {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+}
+.topr{
+    display: flex;
+    /*background-color: black;*/
+    
+    width: 100%;
+    padding-left: 230px;
+    gap: 14px;
+    margin-top: 10px;
+}
+.topr a{
+    text-decoration: none;
+    color: #1E0A3C;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: Neue Plak,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;
+}
+.topr div{
+    width: 100px;
+    border-radius: 20px;
+    height: 30px;
+    /* background-color: cyan; */
+    text-align: center;
+    padding-top: 10px;
+}
+.topr div:hover{
+    background-color: rgba(211, 211, 211, 0.4);
+    
+}
+.url{
+    height: 50px;
+    
+    background-color: white;
+    border: 1px solid lightgray;
+    padding-left: 30px;
+    padding-top: 10px;
+    display: flex;
+    flex-direction: row;
+    
+}
+.immg{
+    height: 100%;
+    width: 60vh;
+    margin-left: 50px;
+    background-image: url("../dumb/How\ to\ spend\ a\ perfect\ day\ in\ Addis\ Ababa.jpeg");
+    background-size: cover; /* Cover the entire background */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat
+
+}
+
+.postscontainer{
+    width: 100%;
+    gap: 60px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.eventbanner{
+    width: 100%;
+    height: 48%;
+    
+}
+.eventbanner img{
+    width: 100%;
+    height: 100%;
+}
+.eventstatus{
+    border-radius: 6px;
+    background-color: lightblue;
+    font-family: Neue Plak,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;
+    font-size: 14px;
+    width: 84px;
+    font-weight: 600;
+    height: 25px;
+    padding-left: 11px;
+    padding-top: 8px;
+    
+}
+.eventtitle{
+    font-size: 18px;
+    font-family: Neue Plak,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;
+    font-weight: 600;
+}
+
+.eventattr{
+    width: 100%;
+    height: 52%;
+    margin-left: 5px;
+    
+}
+.eventdate{
+    font-size: 14px;
+    font-family: Neue Plak,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;
+    font-weight: 600;
+
+}
+.eventaddress{
+    font-size: 14px;
+    font-family: Neue Plak,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;
+    font-weight: 600;
+    color: #6f7287;
+
+}
+.eventprice{
+    font-size: 14px;
+    font-family: Neue Plak,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;
+    font-weight: 600;
+
+}
+.evp:hover{
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+
+}
+.eventposts{
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding-left: 150px;
+    padding-right: 150px;
+
+}
+
+.evp{
+    width: 30%;
+    height: 420px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    transition: box-shadow 0.3s ease;   
+    border-radius: 12px;
+    /* padding-left: 10px; */
+}
+.explore-more{
+    padding-left: 140px;
+    padding-right: 180px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+
+
+.explore_p{
+    height: 100%;
+    font-size: 24px;
+    font-family: Neue Plak,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;
+    font-weight: 700;
+
+}
+.cat-div{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+.catt{
+    margin-left: 10px;
+    width: 23%;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: rgba(211, 211, 211, 0.4);
+    align-items: center;
+}
+.catt i{
+    margin-left: 30px;
+}
+.catt p{
+    margin: 0%;
+    padding: 0%;
+    margin-left: 40px;
+    font-family: Neue Plak,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #1E0A3C;
+
+
+}

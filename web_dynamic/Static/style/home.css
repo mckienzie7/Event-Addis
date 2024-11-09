@@ -1,0 +1,453 @@
+body{
+    
+    
+    padding: 0;
+    margin: 0;
+    /* background-color: lightgray; */
+    /* padding-left: 8px; */
+    
+}
+header{
+    display: flex;
+    flex-direction: column;
+    /* margin-left: 20px; */
+    width: 100%;
+    height: 80vh;
+    background-color: aqua;
+    background-image: url('../dumb/ethh.jpeg');
+    
+    background-size: cover; /* Cover the entire background */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat
+}
+.middletext{
+    color: #d1410c;
+    font-size: 69px;
+    margin-left: 450px;
+    margin-top: 30px;
+
+}
+.top{
+    height: 7vh;
+    background-color: white;
+    display: flex;
+    padding-bottom: 10px;
+
+
+}
+.topl{
+
+    height: 100%;
+    /*background-color: black;*/
+    display: flex;
+    padding-left: 15px;
+    gap: 20px;
+
+}.hlogo{
+    margin-top: 14px;
+    margin-left: 10px;
+ }
+
+.hsearch{
+    margin-left: 50px;
+    margin-top: 5px;
+}
+
+.bsearch{
+    border-radius: 100px;
+    padding-left: 20px;
+    width: 600px;
+    height: 44px;
+    border: 1px solid  gray;
+    background-color:  rgba(211, 211, 211, 0.4);
+    text-align: left;
+    box-shadow: 0 0 5px rgba(0, 0, 0, -4);
+    transition: box-shadow 0.3s ease;
+    opacity: 0.8;
+}
+
+.bsearch:hover {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+}
+.user-emai p{
+    margin-bottom: 50px;
+}
+.topr{
+    display: flex;
+    /*background-color: black;*/
+    
+    width: 100%;
+    padding-left: 230px;
+    gap: 14px;
+    margin-top: 10px;
+}
+.topr a{
+    text-decoration: none;
+    color: black;
+}
+.topr div{
+    width: 100px;
+    border-radius: 20px;
+    height: 30px;
+    /* background-color: cyan; */
+    text-align: center;
+    padding-top: 10px;
+    
+}
+.topr .user-emai{
+    width: 100px;
+    border-radius: 20px;
+    height: 30px;
+    /* background-color: cyan; */
+    text-align: center;
+    padding-top: 10px;
+
+}
+.topr div:hover{
+    background-color: rgba(211, 211, 211, 0.4);
+    
+}
+
+span{
+    font-weight: 600;
+    font-family: "Neue Plak Text", "Neue Plak", sans-serif;
+    line-height: 20px;
+    white-space: nowrap;
+    font-size: 12px;
+}
+.rest{
+    height: 100px;
+    width: 300px;
+    /*background-color: black;*/
+    margin-top: auto;
+    margin-left: 60px;
+
+
+}
+
+.findevent{
+    width: 150px;
+    height: 38px;
+    background-color: red;
+    color: white;
+    border-color: black;
+    margin-top: 30px;
+
+}
+section{
+    display: flex;
+    flex-direction: column;
+}
+
+
+.catagory{
+    width: 100%;
+    display: flex;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-top: 40px;
+    padding-left: 150px;
+    padding-right: 50px;
+    margin-bottom: 20px;
+    gap: 20px;
+    /* padding-left: 30px; */
+    /* margin-left: 30px; */
+
+}
+.catt{
+    height: 150px;
+    width: 160px;
+    /* background-color: yellow; */
+    margin-top: 10px;
+
+    /* margin-bottom: 10px; */
+    
+}
+.catt p{
+    margin-top: 20px;
+    width: 90px;
+    align-items: center;
+    justify-content: center;
+
+    /* margin-left: 8px; */
+    font-family: Neue Plak,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;
+    font-size: 12px;
+    font-weight: 550;
+    text-align: center;
+    /* background-color: black; */
+}
+.cat1{
+    border-radius: 50%;
+    width: 90px;
+    height: 80px;
+    /* background-color: red; */
+    align-items: center;
+    /* margin-left: 10px; */
+    border: 1px solid lightblue;
+    
+}
+#catt11{
+    margin-left: 140px;
+}
+.cat1:hover{
+    background-color: lightblue;
+    opacity: 0.6;
+}
+.cat1:hover + p{
+    color: blue;
+    
+}
+
+.cat1:hover i{
+    color: blue;
+    
+}
+
+.cat1 i{
+    font-size: 20px;
+    color: black;
+    margin-left: 32px;
+    margin-top: 31px;
+
+
+}
+.braddis{
+    height: 80px;
+    width: 100%;
+    margin-top: 10px;
+    border: none;
+    box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.1); /* Blurred shadow */
+    outline: 1px solid rgba(255, 255, 255, 0.5);
+}
+.braddis div{
+    height: 60%;
+    width: 30%;
+    display: flex;
+    margin-left: 150px;
+    padding-top: 20px;
+    flex-direction: row;
+    gap: 10px;
+}
+.braddis div input{
+    border: none;
+    /* border-bottom: 1px solid #000; */
+    outline: none;
+    margin-top: 10px;
+    
+}
+.braddis div input::placeholder{
+    color: blue;
+    font-family: Neue Plak,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+}
+.braddis div p{
+    font-family: Neue Plak,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+}
+.braddis div i{
+    margin-top: 20px;
+    font-weight: bolder;
+    color: blue;
+}
+.taglist{
+    display: flex;
+    margin-top: 20px;
+    flex-direction: row;
+    padding-left: 110px;
+    height: 70px;
+}
+.taglist p.all{
+    color: blue;
+}
+.taglist p {
+    color: #6f7287;
+    font-size: 14px;
+    font-weight: 600;
+    margin-left: 40px;
+    font-family: Neue Plak,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;
+    padding-bottom: 5px;
+    bottom: -5px;
+    position: relative;
+    cursor: pointer;
+}
+.taglist p::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -1px; 
+    width: 100%; 
+    border-bottom: 1px solid transparent; 
+    transition: border-color 0.3s ease; 
+}
+.taglist p:hover{
+    color: black;
+}
+.taglist p:hover::after {
+    border-color: black; 
+    
+}
+.eventposts{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding-left: 150px;
+    padding-right: 150px;
+
+}
+.eventposts p.eventin{
+    font-size: 24px;
+    color: black;
+    font-family: Neue Plak,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;
+    font-weight: 700;
+    
+}
+.ep{
+    padding: 0%;
+
+    height: 220px;
+    width: 380px;
+    margin-left: 10px;
+}
+.ep img{
+    height: 100%;
+    width: 100%;
+
+}
+.ep p.statusevent{
+    font-size: 14px;
+    font-family: Neue Plak,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;
+    font-weight: 600;
+    line-height: 1.5rem;
+    border-radius: 7px;
+    height: 30px;
+    width: 100px;
+    background-color: lightblue;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.postcontent{
+    width: 100%;
+    height: 100%;
+    background-color: #6f7287;
+}
+.postscontainer{
+    width: 100%;
+    gap: 60px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.eventbanner{
+    width: 100%;
+    height: 48%;
+    
+}
+.eventbanner img{
+    width: 100%;
+    height: 100%;
+}
+.eventstatus{
+    border-radius: 6px;
+    background-color: lightblue;
+    font-family: Neue Plak,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;
+    font-size: 14px;
+    width: 84px;
+    font-weight: 600;
+    height: 25px;
+    padding-left: 11px;
+    padding-top: 8px;
+    
+}
+.eventtitle{
+    font-size: 18px;
+    font-family: Neue Plak,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;
+    font-weight: 600;
+}
+
+.eventattr{
+    width: 100%;
+    height: 52%;
+    margin-left: 5px;
+    
+}
+.eventdate{
+    font-size: 14px;
+    font-family: Neue Plak,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;
+    font-weight: 600;
+
+}
+.eventaddress{
+    font-size: 14px;
+    font-family: Neue Plak,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;
+    font-weight: 600;
+    color: #6f7287;
+
+}
+.eventprice{
+    font-size: 14px;
+    font-family: Neue Plak,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;
+    font-weight: 600;
+
+}
+.evp:hover{
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+
+}
+.evp{
+    width: 30%;
+    height: 420px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    transition: box-shadow 0.3s ease;   
+    border-radius: 12px;
+    /* padding-left: 10px; */
+}
+/* Footer styles */
+footer {
+    background-color: #d1410c;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    padding: 30px;
+    margin-top: 150px;
+}
+
+footer div {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    flex-direction: column;
+}
+
+footer .footer-column {
+    width: 23%;
+}
+
+footer h3 {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+footer ul{
+    list-style: none;
+    padding: 0;
+}
+
+footer li {
+    margin-bottom: 10px;
+}
+
+footer  li a {
+    color: white;
+    text-decoration: none;
+}
+
+footer ul li a:hover {
+    color: #FFD700;
+    text-decoration: underline;
+}
