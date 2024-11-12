@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """ objects that handles all default RestFul API actions for Catagories"""
-
+from sqlalchemy.orm import joinedload
 
 from models.place import Place
 from models.user import User
@@ -11,6 +11,8 @@ from api.v1.views import app_views
 from flask import abort, jsonify, make_response, request
 from flasgger.utils import swag_from
 import os
+import re
+from dateutil import parser as date_parser  # Import dateutil parser
 from werkzeug.utils import secure_filename
 import base64
 from datetime import datetime
@@ -44,6 +46,7 @@ def get_event(event_id):
         ev.status = 'Cancelled'
         ev.save()  # Save the updated event status
 
+    return jsonify(ev.to_dict())
 
 @app_views.route('/user/<user_id>/events', methods=['GET'], strict_slashes=False)
 @swag_from('documentation/event/user_events.yml', methods=['GET'])
@@ -86,78 +89,116 @@ def get_category_events(category_id):
 
     return jsonify([event.to_dict() for event in events_in_category])
 
+
+
+
 @app_views.route('/user/<user_id>/events', methods=['POST'], strict_slashes=False)
-@swag_from('documentation/event/create_event.yml', methods=['POST'])
 def create_event(user_id):
     """Create events"""
     user = storage.get(User, user_id)
     if not user:
-        abort(400, description="No user")
-    if 'place_id' not in request.json:
-        abort(400, description="Missing place_id")
-
-    if 'title' not in request.json:
-        abort(400, description="Missing title")
+        abort(400, description="No user found")
 
     data = request.json
+    if not data:
+        abort(400, description="Missing JSON data")
+
+    if 'place_id' not in data:
+        abort(400, description="Missing place_id")
+    if 'title' not in data:
+        abort(400, description="Missing title")
+
     place = storage.get(Place, data['place_id'])
     if not place:
-        abort(400, description="No place")
+        abort(401, description="No place found")
 
-    # Handle the Banner image (base64 to bytes)
-    if 'Banner' in data:
-        banner_data = data['Banner']
-        if banner_data:
-            # Remove the prefix (data:image/jpeg;base64,) if it exists
-            if banner_data.startswith('data:image/jpeg;base64,'):
-                banner_data = banner_data.split('base64,')[1]
+    banner_data = data.get('Banner', '')
+    if banner_data:
+        banner_data = re.sub(r'^data:image/[^;]+;base64,', '', banner_data)
+        missing_padding = len(banner_data) % 4
+        if missing_padding:
+            banner_data += '=' * (4 - missing_padding)
 
-            # Decode the base64 string to bytes
+        try:
             data['Banner'] = base64.b64decode(banner_data)
+        except (base64.binascii.Error, ValueError):
+            abort(401, description="Invalid base64 data for Banner")
 
     data['user_id'] = user_id
-    data['Address'] = place.name
+    data['Address'] = place.address
 
-    # Convert event_date to datetime object using strptime
-    event_date_str = data['Date']  # Ensure this is the correct string format
+    # Convert and validate the event date using dateutil.parser for flexibility
+    event_date_str = data.get('Date')
     try:
-        event_date = datetime.strptime(event_date_str, "%Y-%m-%dT%H:%M:%S")
-    except ValueError:
-        abort(400, description="Invalid date format")
+        # Use dateutil's parser to handle multiple date formats
+        event_date = date_parser.parse(event_date_str)
+    except (ValueError, TypeError):
+        abort(401, description="Invalid date format. Use a valid ISO format like YYYY-MM-DDTHH:MM:SS")
 
     current_time = datetime.now()
+    data['status'] = 'Active' if event_date >= current_time else 'Cancelled'
 
-    if event_date < current_time:
-        data['status'] = 'Cancelled'
-    else:
-        data['status'] = 'Active'
+    # Ensure 'catagories' field contains valid category instances
+    if 'catagories' not in data:
+        abort(400, description="Missing catagories field")
 
+    categories = []
+    for cat_id in data['catagories']:
+        catagory = storage.get(Catagory, cat_id)
+        if not catagory:
+            abort(400, description=f"No category found with id {cat_id}")
+        categories.append(catagory)
+
+    # Remove 'catagories' key from data to avoid conflict
+    del data['catagories']
+
+    # Create event instance
     instance = Events(**data)
+    instance.catagories = categories  # Set the many-to-many relationship
     instance.save()
 
     return make_response(jsonify(instance.to_dict()), 201)
-
-
 @app_views.route('/event_search', methods=['POST'], strict_slashes=False)
 @swag_from('documentation/event/event_search.yml', methods=['POST'])
 def event_search():
     """
-    Search for events by name
+    Search for events by category_id, title, and address.
     :return: JSON response with matching events
     """
-    # Ensure request method is POST
     if request.method == 'POST':
-        # Check if 'name' key is in the request JSON data
-        if 'name' in request.json:
-            # Retrieve the value of 'name' from the request JSON data
-            event_name = request.json['name']
-            # Search for events with matching names
-            matching_events = [event.to_dict() for event in storage.all(Events).values() if event_name in event.name]
-            # Return the matching events as JSON response
+        search_params = request.json
+        filters = []
+
+        # If no parameters are provided, return all events
+        if not search_params:
+            matching_events = [event.to_dict() for event in storage.all(Events).values()]
+            return jsonify(matching_events)
+
+        # Handle 'category_id' search
+        if 'category_id' in search_params:
+            category_id = search_params['category_id']
+            filters.append(lambda event: event.category and category_id == event.category.id)
+
+        # Handle 'title' search (substring match)
+        if 'title' in search_params:
+            event_name = search_params['title'].lower()  # Case insensitive search
+            filters.append(lambda event: event_name in event.title.lower())
+
+        # Handle 'address' search (substring match)
+        if 'address' in search_params:  # Adjusted to lowercase key 'address'
+            event_address = search_params['address'].lower()  # Case insensitive search
+            filters.append(lambda event: event_address in event.Address.lower())
+
+        # Search for events with matching filters
+        matching_events = [
+            event.to_dict() for event in storage.all(Events).values()
+            if all(f(event) for f in filters)
+        ]
+
+        if matching_events:
             return jsonify(matching_events)
         else:
-            # If 'name' key is not present in the request JSON data, return an error response
-            return jsonify({'error': 'Missing name parameter in request'}), 400
+            return jsonify({'error': 'No matching events found'}), 404
+
     else:
-        # If request method is not POST, return an error response
         return jsonify({'error': 'Method not allowed'}), 405

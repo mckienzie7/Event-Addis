@@ -1,8 +1,6 @@
 $(document).ready(function() {
-    // Function to retrieve session ID from localStorage
-    const sessionId = localStorage.getItem('session_id');  // Get session ID from localStorage
-    
-    // Get the email from localStorage
+    // Function to retrieve session ID and email from localStorage
+    const sessionId = localStorage.getItem('session_id');
     const email = localStorage.getItem('email');
 
     // Category-to-icon dictionary
@@ -17,32 +15,28 @@ $(document).ready(function() {
 
     // If there's a session ID, proceed with the logic
     if (sessionId) {
-        // If email is present in localStorage, modify the DOM
+        // Modify DOM if user is logged in
         if (email) {
-            // Remove register div if the user is logged in
             $('.topr .regh').remove();
-            // Append the user's email to the DOM
-            $('.topr .loginh').html(`<span>${email}</span>`); 
+            $('.topr .loginh').html(`<span>${email}</span>`);
         }
 
         // Fetch event data from the server using the session ID
         fetch('http://localhost:5000/api/v1/event', {
             method: 'GET',
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            if (data && Array.isArray(data)) {
-                data.forEach(event => {
-                    // Use category name to find the icon from the dictionary
-                    const categoryIconClass = categoryIcons[event.category] || "fa-solid fa-question";  // Default icon if category not found
+            .then(response => {
+                if (!response.ok) throw new Error('Network response was not ok');
+                return response.json();
+            })
+            .then(data => {
+                if (data && Array.isArray(data)) {
+                    data.forEach(event => {
+                        // Use category name to find the icon from the dictionary
+                        const categoryIconClass = categoryIcons[event.category] || "fa-solid fa-question";
 
-                    const eventHTML = `
-                        <div class="evp" value="${event.id}">
+                        const eventHTML = `
+                        <div class="evp" data-event-id="${event.id}">
                             <div class="eventbanner" name="banner">
                                 <img src="${event.Banner}" alt="Event Banner">
                             </div>
@@ -55,60 +49,51 @@ $(document).ready(function() {
                             </div>
                         </div>`;
 
-                    // Append the event HTML to the container
-                    $('.eventposts .postscontainer').append(eventHTML);
-                });
-            } else {
-                console.error('Invalid response format or missing events array.');
-            }
-        })
-        .catch(error => {
-            console.error('Error fetching events:', error);
-        });
+                        // Append the event HTML to the container
+                        $('.eventposts .postscontainer').append(eventHTML);
+                    });
+
+                    // Add click event listener for each event div
+                    $('.evp').on('click', function() {
+                        const eventId = $(this).data('event-id');
+                        // Redirect to eventspec.html with event ID as URL parameter
+                        window.location.href = `eventspec.html?eventId=${eventId}`;
+                    });
+                } else {
+                    console.error('Invalid response format or missing events array.');
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching events:', error);
+            });
 
         // Fetch categories from the server (to populate category list)
         fetch('http://localhost:5000/api/v1/catagory', {
             method: 'GET',
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(categories => {
-            if (categories && Array.isArray(categories)) {
-                categories.forEach(category => {
-                    // Use the category name to get the corresponding icon from the dictionary
-                    const categoryIconClass = categoryIcons[category.name] || "fa-solid fa-question";  // Default icon if category not found
-
-                    // Create the HTML for each category dynamically
-                    const categoryHTML = `
+            .then(response => {
+                if (!response.ok) throw new Error('Network response was not ok');
+                return response.json();
+            })
+            .then(categories => {
+                if (categories && Array.isArray(categories)) {
+                    categories.forEach(category => {
+                        const categoryIconClass = categoryIcons[category.name] || "fa-solid fa-question";
+                        const categoryHTML = `
                         <div class="catt" id="catt-${category.name}" data-category-id="${category.id}">
                             <div class="cat1">
                                 <i class="${categoryIconClass}"></i>
                             </div>
                             <p class="category-name">${category.name}</p>
                         </div>`;
-
-                    // Append the category HTML to the container
-                    $('.catagory').append(categoryHTML);
-                });
-
-                // Add click event listener to each category
-                $('.catt').on('click', function() {
-                    const categoryId = $(this).data('category-id');
-                    // Redirect to eventsep.html with the category ID as a URL parameter
-                    window.location.href = `catagory.html?category_id=${categoryId}`;
-                });
-            } else {
-                console.error('Invalid response format or missing categories array.');
-            }
-        })
-        .catch(error => {
-            console.error('Error fetching categories:', error);
-        });
-    } else {
-        console.warn('No session ID found. Please login first.');
+                        $('.category-container').append(categoryHTML);
+                    });
+                } else {
+                    console.error('Invalid response format or missing categories array.');
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching categories:', error);
+            });
     }
 });

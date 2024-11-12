@@ -30,37 +30,44 @@ document.addEventListener('DOMContentLoaded', function () {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(loginData)
+                body: JSON.stringify(loginData),
+                credentials: 'include' // Include credentials (cookies) in the request
             })
-            .then(response => {
-                if (response.ok) {
-                    return response.json();
-                } else {
-                    throw new Error('Invalid credentials');
-                }
-            })
-            .then(data => {
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        throw new Error('Invalid credentials');
+                    }
+                })
+                .then(data => {
+                    // Save session ID in cookie
+                    document.cookie = `session_id=${data.session_id}; path=/; max-age=3600`;  // Store session in cookie (1 hour expiration)
 
-                // Check if the user is an admin
-                if (data.admin === true) {
-                    // Redirect to the admin dashboard if admin is true
-                    localStorage.setItem('admin', true); // Store admin status
-                    window.location.href = 'admindashboard.html'; // Redirect to admin dashboard
-                } else {
-                    localStorage.setItem('username', data.username);  // Correct usage of JSON.stringify
-                    localStorage.setItem('session_id', data.session_id); // Save session ID
-                    localStorage.setItem('email', data.email); // Save email
-                    localStorage.setItem('user_id', data.user_id); // Save user ID
-                    window.location.href = 'home.html'; // Redirect to home page
-                }
+                    // Check if the user is an admin
+                    if (data.admin === true) {
+                        // Redirect to the admin dashboard if admin is true
+                        localStorage.setItem('admin', true);
+                        localStorage.setItem('username', data.username);
+                        localStorage.setItem('session_id', data.session_id);  // Save session ID in localStorage too
+                        localStorage.setItem('email', data.email);
+                        localStorage.setItem('user_id', data.user_id);
+                        window.location.href = 'admindashboard.html'; // Redirect to admin dashboard
+                    } else {
+                        localStorage.setItem('username', data.username);
+                        localStorage.setItem('session_id', data.session_id); // Save session ID in localStorage
+                        localStorage.setItem('email', data.email);
+                        localStorage.setItem('user_id', data.user_id);
+                        window.location.href = 'home.html'; // Redirect to home page
+                    }
 
-                // Store additional details in localStorage if needed
-                alert('Login successful');
-            })
-            .catch(error => {
-                console.error('Login error:', error);
-                alert('Login failed. Please check your credentials and try again.');
-            });
+                    // Store additional details in localStorage if needed
+                    alert('Login successful');
+                })
+                .catch(error => {
+                    console.error('Login error:', error);
+                    alert('Login failed. Please check your credentials and try again.');
+                });
         });
     } else {
         console.error('Login button not found');

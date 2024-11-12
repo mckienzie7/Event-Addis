@@ -1,30 +1,27 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // Function to get a cookie value by name
-    function getCookie(name) {
-        let match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
-        return match ? match[2] : null;
-    }
-
-    const sessionId = localStorage.getItem('session_id'); 
+    const sessionId = localStorage.getItem('session_id');
     const user_id = localStorage.getItem('user_id');
 
     if (sessionId) {
-        // Function to fetch locations from Flask endpoint
+
         function fetchLocations() {
             fetch('http://localhost:5000/api/v1/places', {
-                method: 'GET',
+                method: 'GET'
             })
-            .then(response => response.json())
-            .then(data => {
-                // Loop through the response data and populate the location dropdown
-                data.forEach(function(location) {
-                    document.querySelector('.endinp').innerHTML += `<option value="${location.id}">${location.name}</option>`;
-                });
-            })
-            .catch(error => console.error('Error fetching locations:', error));
+                .then(response => response.json())
+                .then(data => {
+                    const locationSelect = document.getElementById('eventloc');
+                    data.forEach(function(location) {
+                        const option = document.createElement('option');
+                        option.value = location.id;
+                        option.textContent = location.name;
+                        locationSelect.appendChild(option);
+                    });
+                })
+                .catch(error => console.error('Error fetching locations:', error));
         }
 
-        // Function to fetch categories from Flask endpoint
+        // Fetch and populate categories
         function fetchCategories() {
             fetch('http://localhost:5000/api/v1/catagory', {
                 method: 'GET',
@@ -32,66 +29,24 @@ document.addEventListener("DOMContentLoaded", function() {
                     'Authorization': 'Bearer ' + sessionId
                 }
             })
-            .then(response => response.json())
-            .then(data => {
-                // Loop through the response data and populate the category dropdown
-                data.forEach(function(category) {
-                    document.querySelector('#eventcategory').innerHTML += `<option value="${category.id}">${category.name}</option>`;
-                });
-            })
-            .catch(error => console.error('Error fetching categories:', error));
+                .then(response => response.json())
+                .then(data => {
+                    const categorySelect = document.getElementById('eventcategory');
+                    data.forEach(function(category) {
+                        const option = document.createElement('option');
+                        option.value = category.id;
+                        option.textContent = category.name;
+                        categorySelect.appendChild(option);
+                    });
+                })
+                .catch(error => console.error('Error fetching categories:', error));
         }
 
-        // Call fetchLocations and fetchCategories functions when the page is loaded
         fetchLocations();
         fetchCategories();
 
-        // Event listener for form submission
-        document.querySelector('.subb').addEventListener('click', function(event) {
-            event.preventDefault();
-        
-            // Gather form data
-            var formData = {
-                title: document.getElementById('eventtitle').value,
-                discription: document.getElementById('eventdescription').value,
-                Date: formatDateToISO(document.getElementById('eventdate').value),
-                place_id: document.getElementById('eventloc').value,
-                Banner: "",
-                categories: null  // Store a single category ID
-            };
-
-            // Collect selected category
-            const selectedCategory = document.getElementById('eventcategory').value;
-            if (selectedCategory) {
-                formData.category_id = selectedCategory;  // Only one category selected
-            }
-
-            const fileInput = document.querySelector('.bannerr');
-            const file = fileInput.files[0];
-            
-            if (file) {
-                // Only create event once the image is fully read
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    formData.Banner = e.target.result; // base64 encoded image
-                    if (!formData.place_id) {
-                        createNewLocationAndEvent(formData);
-                    } else {
-                        createEvent(formData);
-                    }
-                };
-                reader.readAsDataURL(file); // Read the file as a data URL
-            } else {
-                // If no image is provided, continue without setting Banner
-                if (!formData.place_id) {
-                    createNewLocationAndEvent(formData);
-                } else {
-                    createEvent(formData);
-                }
-            }
-        });
-        
-        // Function to format the date in YYYY-MM-DDTHH:MM:SS format
+        // Format date to "YYYY-MM-DDTHH:MM:SS"
+        // Format date to "YYYY-MM-DDTHH:MM:SS" without timezone info
         function formatDateToISO(dateString) {
             const date = new Date(dateString);
             const year = date.getFullYear();
@@ -100,36 +55,101 @@ document.addEventListener("DOMContentLoaded", function() {
             const hours = date.getHours().toString().padStart(2, '0');
             const minutes = date.getMinutes().toString().padStart(2, '0');
             const seconds = date.getSeconds().toString().padStart(2, '0');
-            
+
             return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
         }
 
-        // Function to create a new location and then the event
-        function createNewLocationAndEvent(formData) {
-            const new_place = {
-                name: document.getElementById('placename').value,
-                address: document.getElementById('placeaddress').value,
-                phone_number: document.getElementById('placephoneno').value
-            };
-        
-            fetch('http://localhost:5000/api/v1/place', {
+        // Helper function to create a new place
+        function createPlace(placedata) {
+            return fetch('http://localhost:5000/api/v1/place', {
                 method: 'POST',
                 headers: {
                     'Authorization': 'Bearer ' + sessionId,
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(new_place)
+
+                body: JSON.stringify(placedata)
             })
-            .then(response => response.json())
-            .then(location => {
-                formData.place_id = location.id;
-                createEvent(formData); // Now create the event with the new place ID
-            })
-            .catch(error => console.error('Error creating location:', error));
+                .then(response => response.json())
+                .catch(error => console.error('Error creating place:', error));
         }
-        
-        // Function to create the event
-        function createEvent(formData) {
+
+        // Helper function to create a new category
+        function createCategory(catagorydata) {
+            return fetch('http://localhost:5000/api/v1/catagory', {
+                method: 'POST',
+                headers: {
+                    'Authorization': 'Bearer ' + sessionId,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(catagorydata)
+            })
+                .then(response => response.json())
+                .catch(error => console.error('Error creating category:', error));
+        }
+
+        // Event submission handling
+        document.querySelector('.subb').addEventListener('click', async function(event) {
+            event.preventDefault();
+
+
+
+            let placeId = document.getElementById('eventloc').value;
+            if (!placeId) {
+                // Create a new place if not selected
+                const placeName = document.getElementById('placename').value;
+                const placeAddress = document.getElementById('placeaddress').value;
+                const placePhone = document.getElementById('placephoneno').value
+                const placedata = {
+                    name : placeName,
+                    address : placeAddress,
+                    phone_number : placePhone
+
+                };
+
+                const newPlace = await createPlace(placedata);
+                placeId = newPlace.id;
+            }
+
+            let categoryId = document.getElementById('eventcategory').value;
+            if (!categoryId) {
+                // Create a new category if not selected
+                const categoryName = document.getElementById('catagoryname').value;
+                const categoryDescription = document.getElementById('catagorydisc').value;
+                const catagorydata = {
+                    name : categoryName,
+                    discription : categoryDescription
+                };
+                const newCategory = await createCategory(catagorydata);
+                categoryId = newCategory.id;
+            }
+
+            const formData = {
+                title: document.getElementById('eventtitle').value,
+                description: document.getElementById('eventdescription').value,
+                Date: formatDateToISO(document.getElementById('eventdate').value),
+                place_id: placeId,
+                status: "Active",
+                catagories: [categoryId]
+            };
+
+
+            const fileInput = document.querySelector('.bannerr');
+            const file = fileInput.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    formData.Banner = e.target.result;
+                    submitEvent(formData);
+                };
+                reader.readAsDataURL(file);
+            } else {
+                submitEvent(formData);
+            }
+        });
+
+        function submitEvent(formData) {
             fetch(`http://localhost:5000/api/v1/user/${user_id}/events`, {
                 method: 'POST',
                 headers: {
@@ -138,17 +158,27 @@ document.addEventListener("DOMContentLoaded", function() {
                 },
                 body: JSON.stringify(formData)
             })
-            .then(response => response.json())
-            .then(data => {
-                if (data && data.id) {
-                    window.location.href = 'home.html';
-                    console.log('Event created successfully:', data);
-                }
-            })
-            .catch(error => console.error('Error creating event:', error));
-        }        
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        return response.text().then(text => { throw new Error(text); });
+                    }
+                })
+                .then(data => {
+                    if (data && data.id) {
+                        window.location.href = 'home.html';
+                        alert('Event created successfully!');
+                    } else {
+                        alert('Failed to create event.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error creating event:', error);
+                    alert('An error occurred while creating the event.');
+                });
+        }
     } else {
-        // If no valid session, redirect to login page
         window.location.href = 'login.html';
     }
 });

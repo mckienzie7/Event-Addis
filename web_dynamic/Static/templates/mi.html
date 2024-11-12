@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Detail Page</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <style>
+    
+    body {
+      padding: 0;
+      margin: 0;
+    }
+    main {
+      padding: 40px 20px; 
+      margin-top: 20px; 
+      margin-bottom: 40px; 
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+
+  <!-- Header -->
+  <header class="bg-white py-4 shadow-md">
+    <div class="container mx-auto flex items-center justify-between px-4">
+      <div class="flex items-center space-x-4">
+        <img src="logo.jpg" alt=" Logo" class="h-8">
+        <input type="text" placeholder="Search events" class="border border-gray-300 rounded-full px-4 py-2 text-gray-700 focus:outline-none">
+        <button class="ml-2 bg-red-500 text-white px-4 py-2 rounded-full">Search</button>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 mr-2" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2a7 7 0 017 7c0 5-7 13-7 13S5 14 5 9a7 7 0 017-7zm0 9a2 2 0 100-4 2 2 0 000 4z" />
+        </svg><input type="text"  placeholder="  Search location" class="border border-gray-300 rounded-full px-4 py-2 text-gray-700 focus:outline-none">
+        <button class="ml-2 bg-red-500 text-white px-4 py-2 rounded-full"> <i class="fa fa-search mr-2"></i></button>
+      </div>
+      <div class="flex space-x-4 text-gray-700">
+        <a href="#" class="hover:text-red-500">Find Events</a>
+        <a href="#" class="hover:text-red-500">Create Events</a>
+        <a href="#" class="hover:text-red-500">Help Center</a>
+        <a href="#" class="hover:text-red-500">Find my tickets</a>
+        <a href="#" class="hover:text-red-500">Log In</a>
+        <a href="#" class="hover:text-red-500">Sign Up</a>  
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Section -->
+  <main class="container mx-auto my-8 px-4">
+    <div class="bg-white rounded-lg overflow-hidden shadow-md">
+      <div class="relative">
+        <!-- Event Image -->
+        <img src="event.png" alt="Event Image" class="w-full h-64 object-cover">
+        
+        <!-- Play Button -->
+        <div class="absolute inset-0 flex items-center justify-center">
+         
+        </div>
+      </div>
+      
+      <!-- Event Details -->
+      <div class="p-6">
+        <h2 class="text-2xl font-bold text-gray-800">FOUNDERS LIVE SAN DIEGO</h2>
+        <p class="text-gray-600 mt-2">ENTERTAINMENT • INSPIRATION • KNOWLEDGE • CONNECTION</p>
+        <p class="mt-4 text-lg font-semibold text-gray-700">Monday, November 11</p>
+        <p class="text-gray-500">6:00 PM PST</p>
+        <p class="text-gray-500">The University Club atop Symphony Towers</p>
+        
+        <!-- Ticket Button -->
+        <button class="mt-6 bg-purple-500 text-white px-4 py-2 rounded-md">Ticket sales end soon</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Main Section -->
+  <main class="container mx-auto my-8 px-4">
+
+    <!-- Event Header Section -->
+    <div class="flex justify-between items-start bg-white p-6 rounded-lg shadow-md">
+      <!-- Event Details -->
+      <div class="space-y-4">
+        <p class="text-gray-500">Monday, November 11</p>
+        <h1 class="text-4xl font-bold text-gray-900">Founders Live San Diego</h1>
+        <p class="text-gray-600">The ultimate entrepreneurial experience and pitch competition here in San Diego!</p>
+
+        <!-- Host Info -->
+        <div class="flex items-center space-x-4 bg-gray-100 p-4 rounded-lg">
+          <img src="host.png" alt="Host Image" class="w-12 h-12 rounded-full">
+          <div class="text-sm text-gray-700">
+            <p>By <span class="font-semibold text-gray-900">Founders Live</span> • 8.8k followers</p>
+            <span class="bg-red-100 text-red-700 px-2 py-1 rounded-md">78.1k attendees hosted</span>
+          </div>
+          <button class="ml-auto bg-blue-500 text-white px-4 py-2 rounded-md">Follow</button>
+        </div>
+      </div>
+
+      <!-- Ticket Info -->
+      <div class="bg-gray-50 p-4 rounded-lg shadow-inner text-center">
+        <p class="text-gray-900 text-lg">$0 - $7.18</p>
+        <button class="mt-2 bg-orange-500 text-white px-4 py-2 rounded-md">Get tickets</button>
+      </div>
+    </div>
+
+    <!-- Event Details Section -->
+    <section class="mt-8 space-y-8">
+
+
+        <div>
+            <h2 class="text-xl font-semibold text-gray-900">About the event</h2>
+            <p class="text-gray-700 mt-2 flex items-center">
+               Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, nulla impedit? <br>Aliquam eum recusandae magnam totam eos porro accusamus suscipit a tempore,<br> dicta veritatis nobis vel. Veniam odit laudantium fugiat.
+            </p>
+          </div>
+      <!-- Date and Time -->
+      <div>
+        <h2 class="text-xl font-semibold text-gray-900">Date and time</h2>
+        <p class="text-gray-700 mt-2 flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 mr-2" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M5 3a1 1 0 011 1v1h12V4a1 1 0 112 0v1h1a2 2 0 012 2v13a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2h1V4a1 1 0 011-1zm15 4H4v11a1 1 0 001 1h14a1 1 0 001-1V7zm-4 4a1 1 0 011 1v5a1 1 0 01-2 0v-5a1 1 0 011-1z" />
+          </svg>
+          Monday, November 11 • 6:00 PM - 8:30 PM PST
+        </p>
+      </div>
+
+      <!-- Location -->
+      <div>
+        <h2 class="text-xl font-semibold text-gray-900">Location</h2>
+        <p class="text-gray-700 mt-2 flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 mr-2" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2a7 7 0 017 7c0 5-7 13-7 13S5 14 5 9a7 7 0 017-7zm0 9a2 2 0 100-4 2 2 0 000 4z" />
+          </svg>
+          The University Club Atop Symphony Towers<br>
+          750 B Street Suite 3400, San Diego, CA 92101, United States
+        </p>
+        <a href="#" class="text-blue-500 hover:underline mt-2 inline-block">Show map</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white py-4 shadow-md">
+    <div class="container mx-auto text-center">
+      <p class="text-gray-500 text-sm">© 2024  All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -11,69 +11,63 @@
 </head>
 <body>
 
-    <div class="middle">
-        <a href="../templates/organizer.html" class="backto"><i class="fa-solid fa-less-than"></i>Back to Events</a>
-        <p class="buildeve">Build your event page</p>
-        <p class="hddetail">Add all of your event details and let attendees know what to expect</p>
-        
-        <div class="border-div">
-            <p class="ovp">Event Overview</p>
-            <p class="et">Event title</p>
-            <p class="etdisc">Be clear and descriptive with a title that tells people what your event is about.</p>
-            <input type="text" placeholder="Event title" class="etinp" id="eventtitle">
-            
-            <p class="ed">Event Description</p>
-            <p class="eddisc">Grab people's attention with a short description about your event. Attendees will see this at the top of your event page. (140 characters max)</p>
-            <input type="text" placeholder="Description" class="edinp" id="eventdescription">
-            
-            <p class="et">Event Banner</p>
-            <input type="file" class="bannerr">
-        </div>
-        
-        <div class="border-div">
-            <p class="ovp">Date and Location</p>
-            <p class="et">Date and Time</p>
-            <div>
-                <input type="datetime-local" class="etinp" id="eventdate" placeholder="03/04/24 10:00PM">
-            </div>
-            
-            <p class="ed">Location</p>
-            <select class="endinp" id="eventloc">
-                <option value="">Select Location</option>
-                <!-- Add location options dynamically if needed -->
-            </select>
-            
-            <p class="or">or</p>
-            <p class="etl">Enter your Location</p>
-            <div class="newlocation">
-                <input type="text" placeholder="Name of your place" class="epinp" id="placename"> 
-                <input type="text" class="add" placeholder="Address" id="placeaddress">
-            </div>
-            <input type="text" placeholder="Phone Number" class="ephinp" id="placephoneno">
-        </div>
+<div class="middle">
+    <a href="../templates/organizer.html" class="backto"><i class="fa-solid fa-less-than"></i>Back to Events</a>
+    <p class="buildeve">Build your event page</p>
+    <p class="hddetail">Add all of your event details and let attendees know what to expect</p>
 
-        <div class="border-div">
-            <p class="et">Event Categories</p>
-            <p class="etdisc">Be clear and descriptive with categories that tell people what your event is about.</p>
-            <select class="etinp" id="eventcategory">
-                <option value="">Select Categories</option>
-                
-                <!-- You can add more categories here -->
-            </select>
+    <div class="border-div">
+        <p class="ovp">Event Overview</p>
+        <p class="et">Event title</p>
+        <input type="text" placeholder="Event title" class="etinp" id="eventtitle">
 
-            <p class="et">Selected Categories</p>
-            <div class="selected-categories">
-                <!-- Selected categories will be displayed here -->
-            </div>
-        </div>
+        <p class="ed">Event Description</p>
+        <input type="text" placeholder="Description" class="edinp" id="eventdescription">
+
+        <p class="et">Event Banner</p>
+        <input type="file" class="bannerr">
     </div>
-    
-    <footer>
-        <div class="submit">
-            <button class="subb" onclick="submitEvent()">Submit Event</button>
-        </div>
-    </footer>
 
-       
+    <div class="border-div">
+        <p class="ovp">Date and Location</p>
+        <p class="et">Date and Time</p>
+        <input type="datetime-local" class="etinp" id="eventdate">
+
+        <p class="ed">Location</p>
+        <select class="endinp" id="eventloc">
+            <option value="">Select Location</option>
+        </select>
+
+        <p class="or">or</p>
+        <p class="etl">Enter your Location</p>
+        <div class="newlocation">
+            <input type="text" placeholder="Name of your place" class="epinp" id="placename">
+            <input type="text" class="add" placeholder="Address" id="placeaddress">
+        </div>
+        <input type="text" placeholder="Phone Number" class="ephinp" id="placephoneno">
+    </div>
+
+    <div class="border-div">
+        <p class="et">Event Categories</p>
+        <select class="etinp" id="eventcategory">
+            <option value="">Select Category</option>
+            <!-- Categories will be populated dynamically -->
+        </select>
+        <p class="or">or</p>
+        <p class="etl">Enter your Location</p>
+        <div class="newlocation">
+            <input type="text" placeholder="Name of your Catagory" class="epinp" id="catagoryname">
+        </div>
+        <input type="text" placeholder="Discription" class="ephinp" id="catagorydisc">
+
+    </div>
+</div>
+
+<footer>
+    <div class="submit">
+        <button class="subb">Submit Event</button>
+    </div>
+</footer>
+
 </body>
 </html>

@@ -1,59 +1,73 @@
-$(document).ready(function() {
-        // Check if there's an access token and user role
-        const session_id = localStorage.getItem('session_id')
+document.addEventListener("DOMContentLoaded", function() {
+        // Check if there's an access token and username
+        const session_id = localStorage.getItem('session_id');
+        const username = localStorage.getItem('username');
 
-        // Check if the access token and role are valid
         if (session_id) {
                 // Check if the success message has already been shown in this session
-                var successMessageShown = sessionStorage.getItem('successMessageShown');
+                const successMessageShown = sessionStorage.getItem('successMessageShown');
 
                 if (!successMessageShown) {
                         // Create a success message element
-                        var successMessage = $('<div class="success-message">Successful!</div>');
+                        const successMessage = document.createElement('div');
+                        successMessage.className = 'success-message';
+                        successMessage.textContent = 'Successful!';
+                        document.body.appendChild(successMessage);
 
-                        // Append the success message to the body
-                        $('body').append(successMessage);
-
-                        // Set timeout to remove the success message after 4 seconds (4000 milliseconds)
+                        // Set timeout to remove the success message after 4 seconds
                         setTimeout(function() {
                                 successMessage.remove();
                                 sessionStorage.setItem('successMessageShown', 'true'); // Set flag to indicate success message has been shown in this session
                         }, 4000);
                 }
 
-                // Greet the user
-                var user_info = JSON.parse(localStorage.getItem('user_info'));
-                if (user_info && user_info.username && user_info.fullname) {
-                        var fullName = user_info.fullname;
-                        var userName = user_info.username;
-                        var greetingText = 'Oh hello, ' + fullName + '!';
-                        $('.greet-user p').text(greetingText);
-                        $('.two p').text(userName);
+                // Greet the user if username exists
+                if (username) {
+                        document.querySelector('.greet-user p').textContent = 'Oh hello, ' + username + '!';
+                        document.querySelector('.two p').textContent = username;
                 }
 
                 // Logout functionality
-                const logout = $('.logout');
-                logout.click(function (){
-                        // Show confirmation message
-                        var confirmationMessage = $('<div class="confirmation-message">Are you sure you want to logout?<br><button class="confirm-logout" id="yes">Yes</button><button class="cancel-logout" id="no">No</button></div>');
-                        $('body').append(confirmationMessage);
+                const logoutButton = document.querySelector('.logout');
+                logoutButton.addEventListener('click', function() {
+                        // Create and display a confirmation message
+                        const confirmationMessage = document.createElement('div');
+                        confirmationMessage.className = 'confirmation-message';
+                        confirmationMessage.innerHTML = 'Are you sure you want to logout?<br><button class="confirm-logout" id="yes">Yes</button><button class="cancel-logout" id="no">No</button>';
+                        document.body.appendChild(confirmationMessage);
+
+                        // Show confirmation dialog
+                        confirmationMessage.style.display = 'block';
 
                         // Handle confirm logout button click
-                        $('.logout').click(function() {
-                                $('.confirmation-message').fadeIn();
+                        document.getElementById('yes').addEventListener('click', function() {
+                                // Send logout request to the server
+                                fetch('http://localhost:5000/api/v1/users/logout', {
+                                        method: 'DELETE',
+                                        credentials: 'include',  // This includes cookies in the request
+                                        headers: {
+                                                'Content-Type': 'application/json'
+                                        }
+                                })
+                                    .then(response => {
+                                            if (response.ok) {
+                                                    window.location.href = 'login.html';
+                                                    // Clear local storage and redirect to login page
+                                                    localStorage.clear();
+                                            } else {
+                                                    alert('Failed to log out. Please try again.');
+                                            }
+                                    })
+                                    .catch(error => console.error('Error logging out:', error));
                         });
 
-                        $('.confirm-logout').click(function() {
-                                localStorage.clear();
-                                window.location.href = 'login.html';
-                        });
-
-                        $('.cancel-logout').click(function() {
-                                $('.confirmation-message').fadeOut();
+                        // Handle cancel logout button click
+                        document.getElementById('no').addEventListener('click', function() {
+                                confirmationMessage.style.display = 'none';
                         });
                 });
         } else {
-                // Redirect to login page or handle unauthorized access
-                window.location.href = 'login.html'; // Change to your login page URL
+                // Redirect to login page if not authenticated
+                window.location.href = 'login.html';
         }
 });

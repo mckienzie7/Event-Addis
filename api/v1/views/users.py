@@ -196,5 +196,7 @@ def logout() -> Response:
     user = auth.get_user_from_session_id(session_id)
     if user is None:
         abort(403)
-    AuthController.destroy_session(user.id)
-    return redirect("/")
+
+    auth = AuthController()
+    auth.destroy_session(user.id)
+    return jsonify({"message" : "logout"})
